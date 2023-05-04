@@ -1,7 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, generatePath } from "react-router-dom";
 
-import { Button, Card, Row, Col, Input, Select, Checkbox, Spin } from "antd";
+import {
+  Button,
+  Card,
+  Row,
+  Col,
+  Input,
+  Select,
+  Checkbox,
+  Spin,
+  notification,
+} from "antd";
 import * as S from "./styles";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -9,22 +19,22 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProductListAction,
   getCategoryListAction,
+  addToCartAction,
 } from "../../../redux/actions";
 
 import { ROUTES } from "../../../constants/routes";
 import { PRODUCT_LIMIT } from "../../../constants/paging";
+import { genComponentStyleHook } from "antd/es/theme/internal";
 
-function ProductListPage() {
+function ProductListPage({ id, quantity }) {
   const dispatch = useDispatch();
-  const { productList } = useSelector((state) => state.product);
+  const { productList, productDetail } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
-
   const [filterParams, setFilterParams] = useState({
     categoryId: [],
     searchKey: "",
     sort: "",
   });
-  // console.log(filterParams);
   useEffect(() => {
     dispatch(
       getProductListAction({
@@ -33,6 +43,9 @@ function ProductListPage() {
       })
     );
     dispatch(getCategoryListAction());
+
+    const keySearch = window.location.search.replace("?filter=", "");
+    handleFilter("categoryId", keySearch ? parseInt(keySearch) : []);
   }, []);
 
   const handleFilter = (key, values) => {
@@ -62,14 +75,37 @@ function ProductListPage() {
     });
   }, [categoryList.data]);
 
+  const handleAddToCard = (product) => {
+    dispatch(
+      addToCartAction({
+        id: parseInt(product.id),
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      })
+    );
+    notification.success({
+      message: "Thêm vào giỏ hàng thành công ^^!",
+    });
+  };
+
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
+      console.log(item);
       return (
-        <Col key={item.id} xs={12} xl={8}>
+        <Col key={item.id} xs={6}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
-            <Card title={item.name} size="small">
-              <p>{item.category?.name}</p>
+            <Card
+              title={item.category?.name}
+              size="small"
+              style={{ textAlign: "center" }}
+            >
+              <img alt="" src={item.img} />
+              <p>{item.name}</p>
               <p>{item.price.toLocaleString()} VNĐ</p>
+              <Button onClick={() => handleAddToCard(item)}>
+                Thêm vào giỏ hàng
+              </Button>
             </Card>
           </Link>
         </Col>

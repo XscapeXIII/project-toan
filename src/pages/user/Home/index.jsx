@@ -1,180 +1,157 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { Link, generatePath } from "react-router-dom";
 
-import { Button, Card, Row, Col, Input } from "antd";
+import {
+  Button,
+  Card,
+  Row,
+  Col,
+  Carousel,
+  Divider,
+  notification,
+  Space,
+} from "antd";
 import * as S from "./styles";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getProductListAction } from "../../../redux/actions";
+import {
+  getProductListAction,
+  addToCartAction,
+  getCategoryListAction,
+} from "../../../redux/actions";
 
 import { ROUTES } from "../../../constants/routes";
+import { PRODUCT_HOME } from "../../../constants/paging";
 
 function HomeWrapper() {
-  // const [count, setCount] = useState(0);
-  // const [value, setValue] = useState("");
-  const [productList, setProductList] = useState([
-    {
-      name: "iPhone 14",
-      price: 999,
-    },
-    {
-      name: "iPhone 14 Pro",
-      price: 1999,
-    },
-    {
-      name: "iPhone 15",
-      price: 2999,
-    },
-    {
-      name: "iPhone 15",
-      price: 2999,
-    },
-    {
-      name: "iPhone 15",
-      price: 2999,
-    },
-    {
-      name: "iPhone 15",
-      price: 2999,
-    },
-  ]);
+  const prevArrow = <Button type="primary">Previous</Button>;
+  const nextArrow = <Button type="primary">Next</Button>;
+  const { productList } = useSelector((state) => state.product);
+  const { categoryList } = useSelector((state) => state.category);
 
-  const [productData, setProductData] = useState({
-    name: "",
-    price: "",
-  });
+  const dispatch = useDispatch();
 
-  const [productError, setProductError] = useState({
-    name: "",
-    price: "",
-  });
+  useEffect(() => {
+    dispatch(getProductListAction({ page: 1, limit: PRODUCT_HOME }));
+    dispatch(getCategoryListAction());
+  }, []);
 
-  const handleChangeProductData = (e, key) => {
-    setProductData({
-      ...productData,
-      [key]: e.target.value,
+  const handleAddToCard = (product) => {
+    dispatch(
+      addToCartAction({
+        id: parseInt(product.id),
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+      })
+    );
+    notification.success({
+      message: "Thêm vào giỏ hàng thành công ^^!",
     });
   };
 
-  const handleBuyProduct = (e, name) => {
-    console.log(e.target);
-    console.log(`buy ${name}`);
-  };
-
-  useEffect(() => {
-    dispatch(getProductListAction());
-  }, []);
-
-  // const handleChangeSearchkey = (e) => {
-  //   setValue(e.target.value);
-  // };
-
-  // const handlePlus = () => {
-  //   setCount(count + 1);
-  // };
-  // const handleMinus = () => {
-  //   setCount(count - 1);
-  // };
-
-  const handleAddProduct = () => {
-    //TRONG REACT KO THỂ SÉT 2 STATE GIỐNG NHAU TRỞ LÊN TRONG CÙNG 1 FUNCTION
-    //NÊN CHÚNG TA TẠO RA 1 OBJ TRUNG GIAN LÀ errors
-    let isValid = true;
-    const onlyNumberRegEx = /^[0-9]/g;
-    const errors = {
-      name: "",
-      price: "",
-    };
-
-    if (!productData.name) {
-      errors.name = "Name is require";
-      isValid = false;
-    } else {
-      errors.name = "";
-    }
-
-    if (!productData.price) {
-      errors.price = "Price is require";
-      isValid = false;
-    } else if (!onlyNumberRegEx.test(productData.price)) {
-      errors.price = "Price must be number";
-      isValid = false;
-    } else {
-      errors.price = "";
-    }
-
-    if (isValid) {
-      setProductList([
-        ...productList,
-        {
-          name: productData.name,
-          price: parseInt(productData.price),
-        },
-      ]);
-      setProductData({
-        name: "",
-        price: "",
-      });
-    }
-    setProductError(errors);
-  };
-
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.product);
-  console.log("🚀 ~ file: index.jsx:130 ~ HomeWrapper ~ data:", data);
-
-  const renderProductList = () => {
-    return productList.map((item, index) => {
+  const renderProductListHome = useMemo(() => {
+    return productList.data.map((item) => {
       return (
-        <Col key={index} xs={24} md={12} xl={8}>
+        <Col key={item.id} xs={6}>
           <Link
-            to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: index + 1 })}
+            to={generatePath(ROUTES.USER.PRODUCT_DETAIL, {
+              id: item.id,
+            })}
           >
-            <Card title={item.name} size="small">
-              <h3>${item.price}</h3>
-              <button onClick={(e) => handleBuyProduct(e, item.name)}>
-                Buy
-              </button>
+            <Card
+              title={item.category?.name}
+              size="small"
+              style={{ textAlign: "center" }}
+            >
+              <img alt="" src={item.img} />
+              <p>{item.name}</p>
+              <p>{item.price.toLocaleString()} VNĐ</p>
+              <Button onClick={() => handleAddToCard(item)}>
+                Thêm vào giỏ hàng
+              </Button>
             </Card>
           </Link>
         </Col>
       );
     });
+  }, [productList.data]);
+
+  const renderProductListMan = () => {
+    return (
+      <div>
+        <img
+          style={{ width: "100%", height: "100%" }}
+          alt=""
+          src="https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Men2-500x618.jpg"
+        />
+      </div>
+    );
   };
+  const renderProductListWomen = () => {
+    return (
+      <div>
+        <img
+          style={{ width: "100%", height: "100%" }}
+          alt=""
+          src="https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Lady2-768x949.jpg"
+        />
+      </div>
+    );
+  };
+
+  const renderCategoryListHome = useMemo(() => {
+    return categoryList.data.map((item) => {
+      return (
+        <Col key={item.id} xs={8}>
+          <Link
+            to={
+              generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id }) +
+              `?filter=${item.id}`
+            }
+          >
+            <Card value={item.id} title={item.name} size="small">
+              <img alt="" src={item.img} />
+            </Card>
+          </Link>
+        </Col>
+      );
+    });
+  }, [categoryList.data]);
 
   return (
     <S.HomeWrapper>
-      {/* <Button onClick={() => handlePlus()}>+</Button>
-      <h3>{count}</h3>
-      <Button onClick={() => handleMinus()}>-</Button>
-      <div>
-        <S.CustomInput
-          size="large"
-          style={{ width: 150 }}
-          type="searchkey"
-          onChange={(e) => handleChangeSearchkey(e)}
-        />
-        <p>{value}</p>
-      </div> */}
-      <Row gutter={[16, 16]}>{renderProductList()}</Row>
-      <Input
-        type="text"
-        placeholder="Product name"
-        onChange={(e) => handleChangeProductData(e, "name")}
-        value={productData.name}
-      />
-      <span>{productError.name}</span>
-      <Input
-        type="text"
-        placeholder="Product price"
-        onChange={(e) => handleChangeProductData(e, "price")}
-        value={productData.price}
-      />
-      <span>{productError.price}</span>
-      <Button size="large" type="primary" onClick={() => handleAddProduct()}>
-        Add Product
-      </Button>
+      <S.Carousel>
+        <Carousel
+          autoplay
+          pauseOnHover
+          pauseOnDotsHover
+          draggable
+          prevArrow={prevArrow}
+          nextArrow={nextArrow}
+        >
+          <S.CarouselImg1></S.CarouselImg1>
+          <S.CarouselImg2></S.CarouselImg2>
+          <S.CarouselImg3></S.CarouselImg3>
+          <S.CarouselImg4></S.CarouselImg4>
+        </Carousel>
+      </S.Carousel>
+      <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
+        <Col span={12}>{renderProductListMan()}</Col>
+        <Col span={12}>{renderProductListWomen()}</Col>
+      </Row>
+      <Divider style={{ borderColor: "#5b5b5b" }}>
+        <h3>THƯƠNG HIỆU NỔI BẬT</h3>
+      </Divider>
+      <Row gutter={[16, 16]}>{renderCategoryListHome}</Row>
+      <Divider style={{ borderColor: "#5b5b5b" }}>
+        <h3>SẢN PHẨM MỚI NHẤT</h3>
+      </Divider>
+      <Row gutter={[18, 18]}>{renderProductListHome}</Row>
+      <Divider style={{ borderColor: "#5b5b5b" }}>
+        <h3>TIN TỨC & SỰ KIỆN</h3>
+      </Divider>
     </S.HomeWrapper>
   );
 }

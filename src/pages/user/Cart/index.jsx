@@ -28,7 +28,7 @@ function CartPage() {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (price) => `${price.toLocaleString()} VND`,
+      render: (price) => `${price?.toLocaleString()} VND`,
     },
     {
       title: "Quantity",
@@ -67,7 +67,7 @@ function CartPage() {
       dataIndex: "total",
       key: "total",
       render: (_, item) =>
-        `${(item.price * item.quantity).toLocaleString()} VND`,
+        `${(item.price * item.quantity)?.toLocaleString()} VND`,
     },
     {
       dataIndex: "action",

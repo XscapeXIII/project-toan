@@ -8,7 +8,7 @@ function* loginSaga(action) {
   try {
     const { data, callback } = action.payload;
 
-    const result = yield axios.post("http://localhost:4000/login", data);
+    const result = yield axios.post("http://localhost:5000/login", data);
     yield localStorage.setItem("accessToken", result.data.accessToken);
     yield callback(result.data.user.role);
 
@@ -31,7 +31,7 @@ function* loginSaga(action) {
 function* registerSaga(action) {
   try {
     const { data, callback } = action.payload;
-    const result = yield axios.post("http://localhost:4000/register", data);
+    const result = yield axios.post("http://localhost:5000/register", data);
 
     yield callback();
 
@@ -59,7 +59,7 @@ function* getUserInfoSaga(action) {
   try {
     const { id } = action.payload;
 
-    const result = yield axios.get(`http://localhost:4000/users/${id}`);
+    const result = yield axios.get(`http://localhost:5000/users/${id}`);
 
     yield put({
       type: SUCCESS(AUTH_ACTION.GET_USER_INFO),

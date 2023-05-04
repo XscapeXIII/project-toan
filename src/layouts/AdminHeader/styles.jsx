@@ -9,7 +9,7 @@ export const Headerwrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  height: 56px;
+  height: 91px;
   z-index: 99;
   background-color: ${(props) => props.theme.header};
 `;

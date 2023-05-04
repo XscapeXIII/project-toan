@@ -4,7 +4,7 @@ import { Input } from "antd";
 
 export const MainWrapper = styled.div`
   flex: 1;
-  margin-top: 56px;
+  margin-top: 91px;
   padding: 16px;
   margin-left: 300px;
   transition: all 0.4s;

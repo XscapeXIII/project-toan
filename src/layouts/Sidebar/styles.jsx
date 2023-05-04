@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export const SidebarWrapper = styled.div`
   position: absolute;
-  margin-top: 56px;
+  margin-top: 91px;
   left: -300px;
   padding: 16px;
   width: 300px;
-  height: calc(100% - 56px);
+  height: calc(100% - 91px);
   background-color: #126969;
   overflow: hidden;
   transition: all 0.4s;

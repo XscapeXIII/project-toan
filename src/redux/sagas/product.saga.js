@@ -7,7 +7,7 @@ function* getProductListSaga(action) {
   try {
     const { page, limit, categoryId, more, searchKey, sort } = action.payload;
 
-    const result = yield axios.get("http://localhost:4000/products", {
+    const result = yield axios.get("http://localhost:5000/products", {
       params: {
         //relationship
         _expand: "category",
@@ -49,7 +49,7 @@ function* getProductDetailSaga(action) {
   try {
     const { id } = action.payload;
 
-    const result = yield axios.get(`http://localhost:4000/products/${id}`, {
+    const result = yield axios.get(`http://localhost:5000/products/${id}`, {
       params: {
         _expand: "category",
       },

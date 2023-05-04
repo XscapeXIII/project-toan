@@ -7,7 +7,7 @@ function* getReviewListSaga(action) {
   try {
     const { productId } = action.payload;
 
-    const result = yield axios.get("http://localhost:4000/reviews", {
+    const result = yield axios.get("http://localhost:5000/reviews", {
       params: {
         //relationship
         _expand: "user",
@@ -37,7 +37,7 @@ function* sendReviewSaga(action) {
   try {
     const { data, callback } = action.payload;
 
-    const result = yield axios.post("http://localhost:4000/reviews", data);
+    const result = yield axios.post("http://localhost:5000/reviews", data);
     yield callback();
     yield put({
       type: SUCCESS(REVIEW_ACTION.SEND_REVIEW),

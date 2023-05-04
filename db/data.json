@@ -22,89 +22,104 @@
   "products": [
     {
       "id": 1,
-      "name": "iPhone 14 Pro",
+      "name": "Đồng hồ Rolex Datejust 1111",
       "price": 35000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 1
     },
     {
       "id": 2,
-      "name": "iPhone 15 Pro",
+      "name": "Đồng hồ Rolex Submarine 1111",
       "price": 40000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 1
     },
     {
       "id": 3,
-      "name": "SamSung 20",
+      "name": "Đồng hồ Hublot Classic red",
       "price": 20000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 2
     },
     {
       "id": 4,
-      "name": "SamSung S20 Galaxy",
+      "name": "Đồng hồ Hublot Bigbang",
       "price": 25000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 2
     },
     {
       "id": 5,
-      "name": "SamSung S21",
+      "name": "Đồng hồ Hublot Classic blue",
       "price": 38000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 2
     },
     {
       "id": 6,
-      "name": "Xiaomi note 10",
+      "name": "Đồng hồ Patek Philippe Complication",
       "price": 15000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 3
     },
     {
       "id": 7,
-      "name": "Xiaomi note 11",
+      "name": "Đồng hồ Patek Philippe Nautilus",
       "price": 18000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 3
     },
     {
       "id": 8,
-      "name": "Xiaomi note 12",
+      "name": "Đồng hồ Patek Philippe Aquanaut",
       "price": 23000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 3
     },
     {
       "id": 9,
-      "name": "Iphone Xs Max",
+      "name": "Đồng hồ Rolex Day-date 1111",
       "price": 15000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 1
     },
     {
       "id": 10,
-      "name": "Iphone 11",
+      "name": "Đồng hồ Rolex Day-date 2222",
       "price": 18000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 1
     },
     {
       "id": 11,
-      "name": "Iphone 12",
+      "name": "Đồng hồ Rolex Day-date 2333",
       "price": 28000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 1
     },
     {
       "id": 12,
-      "name": "Samsung S22",
+      "name": "Đồng hồ Hublot Classic green",
       "price": 28000000,
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
       "categoryId": 2
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Apple"
+      "name": "Rolex",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/rolex.jpg"
     },
     {
       "id": 2,
-      "name": "SamSung"
+      "name": "Hublot",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/8d43e4319c025d5c04138.jpg"
     },
     {
       "id": 3,
-      "name": "Xiaomi"
+      "name": "PatekPhilippe",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/54056d771544d41a8d553.jpg"
     }
   ],
   "reviews": [
