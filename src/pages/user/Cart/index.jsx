@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Steps, Table, Button, Space, Input } from "antd";
+import { Link, generatePath, useNavigate } from "react-router-dom";
+
+import { Steps, Table, Button, Space, Input, Row, Col } from "antd";
 import {
   CreditCardOutlined,
   CheckCircleOutlined,
@@ -8,30 +10,41 @@ import {
   UserOutlined,
   MinusOutlined,
   PlusOutlined,
+  CloseOutlined,
 } from "@ant-design/icons";
+import * as S from "./styles";
 
 import {
   deleteCartItemAction,
   updateCartIemAction,
 } from "../../../redux/actions";
+import { ROUTES } from "../../../constants/routes";
 
 function CartPage() {
+  const navigate = useNavigate();
+
   const { cartList } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const cartTotalPrice = cartList.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   const tableColumn = [
     {
-      title: "Name",
+      title: "TÊN SẢN PHẨM",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Price",
+      title: "GIÁ",
       dataIndex: "price",
       key: "price",
-      render: (price) => `${price?.toLocaleString()} VND`,
+      render: (price) => `${price?.toLocaleString()} ₫`,
     },
     {
-      title: "Quantity",
+      title: "SỐ LƯỢNG",
       dataIndex: "quantity",
       key: "quantity",
       render: (quantity, item) => (
@@ -63,24 +76,47 @@ function CartPage() {
       ),
     },
     {
-      title: "Total",
+      title: "TẠM TÍNH",
       dataIndex: "total",
       key: "total",
       render: (_, item) =>
-        `${(item.price * item.quantity)?.toLocaleString()} VND`,
+        `${(item.price * item.quantity)?.toLocaleString()} ₫`,
     },
     {
       dataIndex: "action",
       key: "action",
       render: (_, item) => (
-        <Button onClick={() => dispatch(deleteCartItemAction({ id: item.id }))}>
-          Detele
-        </Button>
+        <Button
+          type="outline"
+          shape="circle"
+          icon={<CloseOutlined />}
+          onClick={() => dispatch(deleteCartItemAction({ id: item.id }))}
+        />
       ),
     },
   ];
+
+  const tableTotalColumn = [
+    {
+      title: "CỘNG GIỎ HÀNG",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "",
+      dataIndex: "total",
+      key: "total",
+      render: (_, item) => `${cartTotalPrice?.toLocaleString()} ₫`,
+    },
+  ];
+  const dataTableTotal = [
+    {
+      key: "1",
+      title: "Tổng tiền: ",
+    },
+  ];
   return (
-    <div>
+    <S.CartWrapper>
       <Steps
         current={0}
         items={[
@@ -102,13 +138,42 @@ function CartPage() {
           },
         ]}
       />
-      <Table
-        columns={tableColumn}
-        dataSource={cartList}
-        rowKey="id"
-        pagination={false}
-      />
-    </div>
+
+      <Row>
+        <Col span={16} style={{ padding: "16px" }}>
+          <Table
+            columns={tableColumn}
+            dataSource={cartList}
+            rowKey="id"
+            pagination={false}
+          />
+          <Button
+            style={{ margin: "16px 0", color: "" }}
+            type="primary"
+            onClick={() => navigate(ROUTES.USER.PRODUCT_LIST)}
+          >
+            Tiếp tục xem sản phẩm
+          </Button>
+        </Col>
+        <Col span={8} style={{ padding: "16px" }}>
+          <Table
+            columns={tableTotalColumn}
+            dataSource={dataTableTotal}
+            rowKey="id"
+            pagination={false}
+          />
+          <Button
+            type="primary"
+            style={{ margin: "16px auto" }}
+            block
+            disabled={!cartList.length}
+            onClick={() => navigate(ROUTES.USER.CHECKOUT_INFO)}
+          >
+            TIẾN HÀNH THANH TOÁN
+          </Button>
+        </Col>
+      </Row>
+    </S.CartWrapper>
   );
 }
 

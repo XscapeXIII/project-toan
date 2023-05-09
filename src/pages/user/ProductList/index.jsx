@@ -24,11 +24,10 @@ import {
 
 import { ROUTES } from "../../../constants/routes";
 import { PRODUCT_LIMIT } from "../../../constants/paging";
-import { genComponentStyleHook } from "antd/es/theme/internal";
 
 function ProductListPage({ id, quantity }) {
   const dispatch = useDispatch();
-  const { productList, productDetail } = useSelector((state) => state.product);
+  const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
   const [filterParams, setFilterParams] = useState({
     categoryId: [],
@@ -44,8 +43,8 @@ function ProductListPage({ id, quantity }) {
     );
     dispatch(getCategoryListAction());
 
-    const keySearch = window.location.search.replace("?filter=", "");
-    handleFilter("categoryId", keySearch ? parseInt(keySearch) : []);
+    const filterLink = window.location.search.replace("?filter=", "");
+    handleFilter("categoryId", filterLink ? parseInt(filterLink) : []);
   }, []);
 
   const handleFilter = (key, values) => {
@@ -102,7 +101,7 @@ function ProductListPage({ id, quantity }) {
             >
               <img alt="" src={item.img} />
               <p>{item.name}</p>
-              <p>{item.price.toLocaleString()} VNĐ</p>
+              <p>{item.price.toLocaleString()} ₫</p>
               <Button onClick={() => handleAddToCard(item)}>
                 Thêm vào giỏ hàng
               </Button>

@@ -20,14 +20,14 @@ export const HeaderContent = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  max-width: 1080px;
+  max-width: 1232px;
   margin: 0 auto;
   padding: 16px;
 `;
 export const HeaderDropdown = styled.div`
   display: block;
   position: relative;
-  background-color: black;
+  background-color: #474141;
 `;
 export const HeaderDropdownNav = styled.div`
   align-items: center;
@@ -35,8 +35,9 @@ export const HeaderDropdownNav = styled.div`
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  max-width: 1080px;
+  max-width: 1232px;
   margin: 0 auto;
   padding: 16px;
   max-height: 16px;
+  color: white;
 `;

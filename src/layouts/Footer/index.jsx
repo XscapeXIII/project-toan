@@ -12,10 +12,8 @@ function Footer() {
               <Divider
                 style={{
                   borderColor: "#201111",
-                  width: "15%",
-                  maxWidth: "5px",
-                  margin: "6px 0",
-                  height: "3px",
+                  margin: "12px 0",
+                  border: "1px solid",
                 }}
               />
               <span style={{ marginBottom: "16px" }}>
@@ -36,10 +34,8 @@ function Footer() {
               <Divider
                 style={{
                   borderColor: "#201111",
-                  width: "15%",
-                  maxWidth: "5px",
-                  margin: "6px 0",
-                  height: "3px",
+                  margin: "12px 0",
+                  border: "1px solid",
                 }}
               />
               <img
@@ -55,9 +51,100 @@ function Footer() {
             </Col>
             <Col span={6}>
               <h5>LUXURY WATCH</h5>
+              <Divider
+                style={{
+                  borderColor: "#201111",
+                  margin: "12px 0",
+                  border: "1px solid",
+                }}
+              />
+              <h5>ĐỒNG HỒ ROLEX</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ HUBLOT</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ OMEGA</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ LONGINES</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ PATEK PHILIPPE</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ FRANCK MULLER</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>ĐỒNG HỒ NGA</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
             </Col>
             <Col span={6}>
               <h5>VỀ CHÚNG TÔI</h5>
+              <Divider
+                style={{
+                  borderColor: "#201111",
+                  margin: "12px 0",
+                  border: "1px solid",
+                }}
+              />
+              <h5>LIÊN HỆ</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>SẢN PHẨM</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>HỆ THỐNG CỬA HÀNG</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
+              <h5>GIỚI THIỆU</h5>
+              <Divider
+                style={{
+                  borderColor: "#be9191",
+                  margin: "6px 0",
+                }}
+              />
             </Col>
           </Row>
         </S.FooterContent>

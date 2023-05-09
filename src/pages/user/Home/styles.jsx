@@ -56,3 +56,9 @@ export const CarouselImg4 = styled.div`
   background-size: cover;
   background-image: url("https://bizweb.dktcdn.net/100/022/676/collections/dong-ho-nam-dep-hot-nhat-thoi-trang-gia-re-moi-nhat-2021-timesstore-vn.jpg?v=1619024777520");
 `;
+
+export const CardItem = styled.div`
+  width: 100%;
+  position: relative;
+  padding-top: 0%;
+`;

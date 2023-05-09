@@ -60,18 +60,22 @@ function HomeWrapper() {
               id: item.id,
             })}
           >
-            <Card
-              title={item.category?.name}
-              size="small"
-              style={{ textAlign: "center" }}
-            >
-              <img alt="" src={item.img} />
-              <p>{item.name}</p>
-              <p>{item.price.toLocaleString()} VNĐ</p>
-              <Button onClick={() => handleAddToCard(item)}>
-                Thêm vào giỏ hàng
-              </Button>
-            </Card>
+            <S.CardItem>
+              <Card
+                title={item.category?.name}
+                size="small"
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                <img alt="" src={item.img} />
+                <p>{item.name}</p>
+                <p>{item.price.toLocaleString()} ₫</p>
+                <Button onClick={() => handleAddToCard(item)}>
+                  Thêm vào giỏ hàng
+                </Button>
+              </Card>
+            </S.CardItem>
           </Link>
         </Col>
       );
@@ -103,6 +107,7 @@ function HomeWrapper() {
 
   const renderCategoryListHome = useMemo(() => {
     return categoryList.data.map((item) => {
+      console.log(item);
       return (
         <Col key={item.id} xs={8}>
           <Link
@@ -110,8 +115,19 @@ function HomeWrapper() {
               generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id }) +
               `?filter=${item.id}`
             }
+            // to={generatePath(
+            //   ROUTES.USER.PRODUCT_LIST,
+            //   getCategoryListAction({
+            //     id: item.id,
+            //   })
+            // )}
           >
-            <Card value={item.id} title={item.name} size="small">
+            <Card
+              value={item.id}
+              title={item.name}
+              size="small"
+              style={{ textAlign: "center" }}
+            >
               <img alt="" src={item.img} />
             </Card>
           </Link>

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import jwtDecode from "jwt-decode";
 import "moment/locale/vi";
@@ -23,6 +23,7 @@ import HomePage from "../pages/user/Home";
 import ProductListPage from "../pages/user/ProductList";
 import AboutPage from "../pages/user/About";
 import CartPage from "../pages/user/Cart";
+import InfoPage from "../pages/user/Info";
 import ProductDetailPage from "../pages/user/ProductDetail";
 
 import LoginPage from "../pages/Login";
@@ -35,6 +36,7 @@ import { useSelector, useDispatch } from "react-redux";
 function App() {
   const { theme } = useSelector((state) => state.common);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
@@ -42,7 +44,9 @@ function App() {
       dispatch(getUserInfoAction({ id: tokenData.sub }));
     }
   }, []);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <ConfigProvider
       theme={{
@@ -69,6 +73,7 @@ function App() {
             />
             <Route path={ROUTES.USER.ABOUT} element={<AboutPage />} />
             <Route path={ROUTES.USER.CART_LIST} element={<CartPage />} />
+            <Route path={ROUTES.USER.CHECKOUT_INFO} element={<InfoPage />} />
             <Route
               path={ROUTES.USER.PRODUCT_DETAIL}
               element={<ProductDetailPage />}

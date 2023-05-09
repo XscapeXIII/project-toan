@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, generatePath } from "react-router-dom";
 
 import { Dropdown, Button, Space, Badge, Divider, Search, Input } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined, DownOutlined } from "@ant-design/icons";
 import { ROUTES } from "../../constants/routes";
 import { logoutAction } from "../../redux/actions";
 import * as S from "./styles";
@@ -11,6 +11,8 @@ function AdminHeader() {
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
   const { cartList } = useSelector((state) => state.cart);
+  const { categoryList } = useSelector((state) => state.category);
+
   const navigate = useNavigate();
 
   return (
@@ -55,10 +57,15 @@ function AdminHeader() {
                     ],
                   }}
                 >
-                  <h3>{userInfo.data.fullName}</h3>
+                  <h3 style={{ cursor: "pointer" }}>
+                    {userInfo.data.fullName}
+                  </h3>
                 </Dropdown>
               ) : (
-                <Button onClick={() => navigate(ROUTES.LOGIN)}>
+                <Button
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate(ROUTES.LOGIN)}
+                >
                   Đăng nhập
                 </Button>
               )}
@@ -68,21 +75,90 @@ function AdminHeader() {
       </S.HeaderContainer>
       <S.HeaderDropdown>
         <S.HeaderDropdownNav>
-          <div className="nav-link">
+          <div>
             <div className="nav-link-item">
-              <Link to={ROUTES.USER.HOME}>
-                <h4>Trang chủ</h4>
-              </Link>
+              <Dropdown
+                disabled
+                menu={{
+                  items: [
+                    {
+                      key: "1",
+                      label: <Link to={ROUTES.USER.HOME}>TRANG CHỦ</Link>,
+                    },
+                  ],
+                }}
+              >
+                <Space size={3} style={{ cursor: "pointer" }}>
+                  <Link to={ROUTES.USER.HOME}>TRANG CHỦ</Link>
+                </Space>
+              </Dropdown>
             </div>
             <div className="nav-link-item">
-              <Link to={ROUTES.USER.ABOUT}>
-                <h4>Về chúng tôi</h4>
-              </Link>
+              <Dropdown
+                menu={{
+                  items: [
+                    {
+                      key: "about",
+                      label: <Link to={ROUTES.USER.ABOUT}>VỀ CHÚNG TÔI</Link>,
+                    },
+                    {
+                      key: "2",
+                      label: <Link to={ROUTES.USER.ABOUT}>CHÍNH SÁCH</Link>,
+                    },
+                    {
+                      key: "3",
+                      label: <Link to={ROUTES.USER.ABOUT}>LIÊN HỆ</Link>,
+                    },
+                    {
+                      key: "4",
+                      label: <Link to={ROUTES.USER.ABOUT}>SẢN PHẨM</Link>,
+                    },
+                  ],
+                }}
+              >
+                <Space size={3} style={{ cursor: "pointer" }}>
+                  VỀ CHÚNG TÔI <DownOutlined style={{ fontSize: "12px" }} />
+                </Space>
+              </Dropdown>
             </div>
             <div className="nav-link-item">
-              <Link to={ROUTES.USER.PRODUCT_LIST}>
-                <h4>Danh sách sản phẩm</h4>
-              </Link>
+              <Dropdown
+                menu={{
+                  items: [
+                    {
+                      key: "rolex",
+                      label: (
+                        <Link
+                          to={
+                            generatePath(ROUTES.USER.PRODUCT_LIST, {
+                              id: categoryList.id,
+                            }) + `?filter=${categoryList.id}`
+                          }
+                        >
+                          ĐỒNG HỒ ROLEX
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "hublot",
+                      label: <Link to={ROUTES.USER.ABOUT}>ĐỒNG HỒ HUBLOT</Link>,
+                    },
+                    {
+                      key: "patekphilippe",
+                      label: (
+                        <Link to={ROUTES.USER.ABOUT}>
+                          ỒNG HỒ PATEK PHILIPPE
+                        </Link>
+                      ),
+                    },
+                  ],
+                }}
+              >
+                <Space size={3} style={{ cursor: "pointer" }}>
+                  <Link to={ROUTES.USER.PRODUCT_LIST}>DANH SÁCH SẢN PHẨM</Link>
+                  <DownOutlined style={{ fontSize: "12px" }} />
+                </Space>
+              </Dropdown>
             </div>
           </div>
         </S.HeaderDropdownNav>
