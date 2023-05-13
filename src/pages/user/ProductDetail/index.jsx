@@ -109,6 +109,7 @@ function ProductDetailPage() {
         name: productDetail.data.name,
         price: productDetail.data.price,
         quantity: quantity,
+        img: productDetail.data.price,
       })
     );
     notification.success({

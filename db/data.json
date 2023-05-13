@@ -178,6 +178,108 @@
       "id": 5
     }
   ],
+  "orders": [
+    {
+      "fullName": "Toàn",
+      "email": "vvtoan@yahoo.com",
+      "phoneNumber": "0868865268",
+      "cityCode": "89",
+      "districtCode": "888",
+      "wardCode": "30415",
+      "address": "123123",
+      "paymentMethod": "cod",
+      "userId": 2,
+      "totalPrice": 85000000,
+      "status": "pending",
+      "createdAt": 1683971707465,
+      "updatedAt": 1683971707466,
+      "id": 1
+    },
+    {
+      "fullName": "Toàn",
+      "email": "vvtoan@yahoo.com",
+      "phoneNumber": "0868865268",
+      "cityCode": "89",
+      "districtCode": "888",
+      "wardCode": "30415",
+      "address": "123123",
+      "paymentMethod": "cod",
+      "userId": 2,
+      "totalPrice": 100000000,
+      "status": "pending",
+      "createdAt": 1683971779535,
+      "updatedAt": 1683971779535,
+      "id": 2
+    },
+    {
+      "fullName": "Toàn",
+      "email": "vvtoan@yahoo.com",
+      "phoneNumber": "0868865268",
+      "cityCode": "74",
+      "districtCode": "718",
+      "wardCode": "25744",
+      "address": "123123",
+      "paymentMethod": "cod",
+      "userId": 2,
+      "totalPrice": 40000000,
+      "status": "pending",
+      "createdAt": 1683971828292,
+      "updatedAt": 1683971828292,
+      "id": 3
+    }
+  ],
+  "orderDetails": [
+    {
+      "orderId": 1,
+      "productId": 4,
+      "name": "Đồng hồ Hublot Bigbang",
+      "price": 25000000,
+      "quantity": 2,
+      "createdAt": 1683971707558,
+      "updatedAt": 1683971707558,
+      "id": 1
+    },
+    {
+      "orderId": 1,
+      "productId": 1,
+      "name": "Đồng hồ Rolex Datejust 1111",
+      "price": 35000000,
+      "quantity": 1,
+      "createdAt": 1683971707637,
+      "updatedAt": 1683971707637,
+      "id": 2
+    },
+    {
+      "orderId": 2,
+      "productId": 3,
+      "name": "Đồng hồ Hublot Classic red",
+      "price": 20000000,
+      "quantity": 1,
+      "createdAt": 1683971779653,
+      "updatedAt": 1683971779654,
+      "id": 3
+    },
+    {
+      "orderId": 2,
+      "productId": 2,
+      "name": "Đồng hồ Rolex Submarine 1111",
+      "price": 40000000,
+      "quantity": 2,
+      "createdAt": 1683971779835,
+      "updatedAt": 1683971779835,
+      "id": 4
+    },
+    {
+      "orderId": 3,
+      "productId": 2,
+      "name": "Đồng hồ Rolex Submarine 1111",
+      "price": 40000000,
+      "quantity": 1,
+      "createdAt": 1683971828374,
+      "updatedAt": 1683971828374,
+      "id": 5
+    }
+  ],
   "cities": [
     {
       "id": 10993,

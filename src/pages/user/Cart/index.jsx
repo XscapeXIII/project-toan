@@ -24,6 +24,7 @@ function CartPage() {
   const navigate = useNavigate();
 
   const { cartList } = useSelector((state) => state.cart);
+  const { productList } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const cartTotalPrice = cartList.reduce(
@@ -36,6 +37,14 @@ function CartPage() {
       title: "TÊN SẢN PHẨM",
       dataIndex: "name",
       key: "name",
+    },
+    {
+      title: "",
+      dataIndex: "img",
+      width: 100,
+      maxWidth: 100,
+      key: "img",
+      render: (_, item) => <img alt="" src={item.img} />,
     },
     {
       title: "GIÁ",
@@ -118,22 +127,23 @@ function CartPage() {
   return (
     <S.CartWrapper>
       <Steps
+        style={{ maxWidth: "720px", margin: "0 auto", padding: "16px" }}
         current={0}
         items={[
           {
             title: "Giỏ hàng",
             icon: <UserOutlined />,
           },
+          // {
+          //   title: "Thông tin giỏ hàng",
+          //   icon: <SolutionOutlined />,
+          // },
           {
-            title: "Thông tin giỏ hàng",
-            icon: <SolutionOutlined />,
-          },
-          {
-            title: "Thanh toán",
+            title: "Chi tiết thanh toán",
             icon: <CreditCardOutlined />,
           },
           {
-            title: "Hoàn tất",
+            title: "Thanh toán thành công",
             icon: <CheckCircleOutlined />,
           },
         ]}
@@ -167,6 +177,7 @@ function CartPage() {
             style={{ margin: "16px auto" }}
             block
             disabled={!cartList.length}
+            // disabled={cartList.length === 0}
             onClick={() => navigate(ROUTES.USER.CHECKOUT_INFO)}
           >
             TIẾN HÀNH THANH TOÁN

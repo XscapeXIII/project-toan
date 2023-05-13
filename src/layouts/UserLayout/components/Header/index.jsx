@@ -3,8 +3,8 @@ import { Link, useNavigate, generatePath } from "react-router-dom";
 
 import { Dropdown, Button, Space, Badge, Divider, Search, Input } from "antd";
 import { ShoppingCartOutlined, DownOutlined } from "@ant-design/icons";
-import { ROUTES } from "../../constants/routes";
-import { logoutAction } from "../../redux/actions";
+import { ROUTES } from "../../../../constants/routes";
+import { logoutAction } from "../../../../redux/actions";
 import * as S from "./styles";
 
 function AdminHeader() {
@@ -14,7 +14,10 @@ function AdminHeader() {
   const { categoryList } = useSelector((state) => state.category);
 
   const navigate = useNavigate();
-
+  const cartTotalPrice = cartList.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
   return (
     <S.Headerwrapper>
       <S.HeaderContainer>
@@ -28,7 +31,9 @@ function AdminHeader() {
                   <ShoppingCartOutlined
                     style={{ color: "black", fontSize: 20 }}
                   />
-                  <span color="black">Giỏ hàng/ 0₫</span>
+                  <span color="black">
+                    Giỏ hàng/ {cartTotalPrice.toLocaleString()} ₫
+                  </span>
                 </Badge>
               </Link>
               <Divider
@@ -103,21 +108,15 @@ function AdminHeader() {
                     },
                     {
                       key: "2",
-                      label: <Link to={ROUTES.USER.ABOUT}>CHÍNH SÁCH</Link>,
-                    },
-                    {
-                      key: "3",
-                      label: <Link to={ROUTES.USER.ABOUT}>LIÊN HỆ</Link>,
-                    },
-                    {
-                      key: "4",
-                      label: <Link to={ROUTES.USER.ABOUT}>SẢN PHẨM</Link>,
+                      label: (
+                        <Link to={ROUTES.USER.ABOUT_POLICY}>CHÍNH SÁCH</Link>
+                      ),
                     },
                   ],
                 }}
               >
-                <Space size={3} style={{ cursor: "pointer" }}>
-                  VỀ CHÚNG TÔI <DownOutlined style={{ fontSize: "12px" }} />
+                <Space size={2} style={{ cursor: "pointer" }}>
+                  GIỚI THIỆU <DownOutlined style={{ fontSize: "12px" }} />
                 </Space>
               </Dropdown>
             </div>
@@ -129,11 +128,8 @@ function AdminHeader() {
                       key: "rolex",
                       label: (
                         <Link
-                          to={
-                            generatePath(ROUTES.USER.PRODUCT_LIST, {
-                              id: categoryList.id,
-                            }) + `?filter=${categoryList.id}`
-                          }
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 1 }}
                         >
                           ĐỒNG HỒ ROLEX
                         </Link>
@@ -141,13 +137,23 @@ function AdminHeader() {
                     },
                     {
                       key: "hublot",
-                      label: <Link to={ROUTES.USER.ABOUT}>ĐỒNG HỒ HUBLOT</Link>,
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 2 }}
+                        >
+                          ĐỒNG HỒ HUBLOT
+                        </Link>
+                      ),
                     },
                     {
                       key: "patekphilippe",
                       label: (
-                        <Link to={ROUTES.USER.ABOUT}>
-                          ỒNG HỒ PATEK PHILIPPE
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 3 }}
+                        >
+                          ĐỒNG HỒ PATEK PHILIPPE
                         </Link>
                       ),
                     },

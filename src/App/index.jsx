@@ -22,8 +22,10 @@ import { getUserInfoAction } from "../redux/actions";
 import HomePage from "../pages/user/Home";
 import ProductListPage from "../pages/user/ProductList";
 import AboutPage from "../pages/user/About";
+import AboutPagePolicy from "../pages/user/AboutPolicy";
 import CartPage from "../pages/user/Cart";
 import InfoPage from "../pages/user/Info";
+import SuccessPage from "../pages/user/CheckoutSuccess";
 import ProductDetailPage from "../pages/user/ProductDetail";
 
 import LoginPage from "../pages/Login";
@@ -72,8 +74,16 @@ function App() {
               element={<ProductListPage />}
             />
             <Route path={ROUTES.USER.ABOUT} element={<AboutPage />} />
+            <Route
+              path={ROUTES.USER.ABOUT_POLICY}
+              element={<AboutPagePolicy />}
+            />
             <Route path={ROUTES.USER.CART_LIST} element={<CartPage />} />
             <Route path={ROUTES.USER.CHECKOUT_INFO} element={<InfoPage />} />
+            <Route
+              path={ROUTES.USER.CHECKOUT_SUCCESS}
+              element={<SuccessPage />}
+            />
             <Route
               path={ROUTES.USER.PRODUCT_DETAIL}
               element={<ProductDetailPage />}

@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import * as S from "./styles";
 
-import AdminHeader from "../AdminHeader";
-import Sidebar from "../Sidebar";
+import AdminHeader from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import { ROUTES } from "../../constants/routes";
 
 function AdminLayout() {

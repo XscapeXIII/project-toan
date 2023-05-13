@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Link, generatePath } from "react-router-dom";
+import { Link, generatePath, useNavigate } from "react-router-dom";
 
 import {
   Button,
@@ -30,6 +30,7 @@ function HomeWrapper() {
   const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function HomeWrapper() {
         id: parseInt(product.id),
         name: product.name,
         price: product.price,
+        img: product.img,
         quantity: 1,
       })
     );
@@ -104,23 +106,20 @@ function HomeWrapper() {
       </div>
     );
   };
-
+  // const handleSelectCategory = () => {
+  //   navigate(ROUTES.USER.PRODUCT_LIST, { state: { categoryId: 1 } });
+  // };
   const renderCategoryListHome = useMemo(() => {
     return categoryList.data.map((item) => {
-      console.log(item);
       return (
         <Col key={item.id} xs={8}>
           <Link
-            to={
-              generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id }) +
-              `?filter=${item.id}`
-            }
-            // to={generatePath(
-            //   ROUTES.USER.PRODUCT_LIST,
-            //   getCategoryListAction({
-            //     id: item.id,
-            //   })
-            // )}
+            //cách lưu trữ luôn cả link khi gửi
+            // to={
+            //   generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id }) +
+            //   `?filter=${item.id}`
+            to={generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id })}
+            state={{ categoryId: item.id }}
           >
             <Card
               value={item.id}

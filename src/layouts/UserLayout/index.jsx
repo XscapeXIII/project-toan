@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./styles";
-import UserHeader from "../UserHeader";
-import Footer from "../Footer";
+import UserHeader from "./components/Header";
+import Footer from "./components/Footer";
 
 function UserLayout() {
   return (

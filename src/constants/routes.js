@@ -5,9 +5,9 @@ export const ROUTES = {
     PRODUCT_DETAIL: "/products/:id",
     CART_LIST: "/checkout/cart",
     CHECKOUT_INFO: "/checkout/info",
-    CHECKOUT_PAYMENT: "/checkout/payment",
     CHECKOUT_SUCCESS: "/checkout/success",
     ABOUT: "/about",
+    ABOUT_POLICY: "/about/chinh-sach",
   },
   ADMIN: {
     DASHBOARD: "/admin/dashboard",

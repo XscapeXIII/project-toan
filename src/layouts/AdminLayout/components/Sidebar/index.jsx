@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import * as S from "./styles";
 
-import { ROUTES } from "../../constants/routes";
+import { ROUTES } from "../../../../constants/routes";
 
 const SIDEBAR_ITEMS = [
   {

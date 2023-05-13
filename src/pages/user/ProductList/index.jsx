@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, generatePath } from "react-router-dom";
+import { Link, generatePath, useLocation } from "react-router-dom";
 
 import {
   Button,
@@ -20,31 +20,35 @@ import {
   getProductListAction,
   getCategoryListAction,
   addToCartAction,
-} from "../../../redux/actions";
+} from "redux/actions";
 
-import { ROUTES } from "../../../constants/routes";
-import { PRODUCT_LIMIT } from "../../../constants/paging";
+import { ROUTES } from "constants/routes";
+import { PRODUCT_LIMIT } from "constants/paging";
 
-function ProductListPage({ id, quantity }) {
+function ProductListPage() {
   const dispatch = useDispatch();
+  const { state } = useLocation();
   const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
+
   const [filterParams, setFilterParams] = useState({
-    categoryId: [],
+    categoryId: state?.categoryId ? [state?.categoryId] : [],
     searchKey: "",
     sort: "",
   });
+
   useEffect(() => {
     dispatch(
       getProductListAction({
+        ...filterParams,
         page: 1,
         limit: PRODUCT_LIMIT,
       })
     );
     dispatch(getCategoryListAction());
 
-    const filterLink = window.location.search.replace("?filter=", "");
-    handleFilter("categoryId", filterLink ? parseInt(filterLink) : []);
+    // const filterLink = window.location.search.replace("?filter=", "");
+    // handleFilter("categoryId", filterLink ? parseInt(filterLink) : []);
   }, []);
 
   const handleFilter = (key, values) => {
@@ -80,6 +84,7 @@ function ProductListPage({ id, quantity }) {
         id: parseInt(product.id),
         name: product.name,
         price: product.price,
+        img: product.img,
         quantity: 1,
       })
     );
@@ -129,6 +134,7 @@ function ProductListPage({ id, quantity }) {
         <Col span={6}>
           <Card title="Filter">
             <Checkbox.Group
+              value={filterParams.categoryId}
               onChange={(values) => handleFilter("categoryId", values)}
             >
               <Row>{renderCategoryFilter}</Row>
