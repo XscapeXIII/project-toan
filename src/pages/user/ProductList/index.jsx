@@ -152,7 +152,7 @@ function ProductListPage() {
             <Col span={6}>
               <Select
                 onChange={(value) => handleFilter("sort", value)}
-                placeholder="Sort by..."
+                placeholder="Tìm kiếm sản phẩm..."
                 style={{ width: "100%" }}
               >
                 <Select.Option value="name.decs">Tên A-Z</Select.Option>

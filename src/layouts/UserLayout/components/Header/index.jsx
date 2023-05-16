@@ -55,6 +55,18 @@ function AdminHeader() {
                         },
                       },
                       {
+                        key: "profile",
+                        label: (
+                          <Link to={ROUTES.USER.PROFILE}>
+                            Tài khoản của tôi
+                          </Link>
+                        ),
+                        style: {
+                          display:
+                            userInfo.data.role === "user" ? "block" : "none",
+                        },
+                      },
+                      {
                         key: "logout",
                         label: "Logout",
                         onClick: () => dispatch(logoutAction()),

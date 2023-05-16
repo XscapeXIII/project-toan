@@ -19,6 +19,7 @@ import {
   getProductListAction,
   addToCartAction,
   getCategoryListAction,
+  getGenderListAction,
 } from "../../../redux/actions";
 
 import { ROUTES } from "../../../constants/routes";
@@ -29,6 +30,7 @@ function HomeWrapper() {
   const nextArrow = <Button type="primary">Next</Button>;
   const { productList } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
+  const { genderList } = useSelector((state) => state.gender);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,6 +38,7 @@ function HomeWrapper() {
   useEffect(() => {
     dispatch(getProductListAction({ page: 1, limit: PRODUCT_HOME }));
     dispatch(getCategoryListAction());
+    dispatch(getGenderListAction());
   }, []);
 
   const handleAddToCard = (product) => {
@@ -84,31 +87,28 @@ function HomeWrapper() {
     });
   }, [productList.data]);
 
-  const renderProductListMan = () => {
-    return (
-      <div>
-        <img
-          style={{ width: "100%", height: "100%" }}
-          alt=""
-          src="https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Men2-500x618.jpg"
-        />
-      </div>
-    );
-  };
-  const renderProductListWomen = () => {
-    return (
-      <div>
-        <img
-          style={{ width: "100%", height: "100%" }}
-          alt=""
-          src="https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Lady2-768x949.jpg"
-        />
-      </div>
-    );
-  };
-  // const handleSelectCategory = () => {
-  //   navigate(ROUTES.USER.PRODUCT_LIST, { state: { categoryId: 1 } });
-  // };
+  // const renderGenderList = useMemo(() => {
+  //   return genderList.data.map((item) => {
+  //     return (
+  //       <Col key={item.id} xs={8}>
+  //         <Link
+  //           to={generatePath(ROUTES.USER.PRODUCT_LIST, { id: item.id })}
+  //           state={{ genderId: item.id }}
+  //         >
+  //           <Card
+  //             value={item.id}
+  //             title={item.name}
+  //             size="small"
+  //             style={{ textAlign: "center" }}
+  //           >
+  //             <img alt="" src={item.img} />
+  //           </Card>
+  //         </Link>
+  //       </Col>
+  //     );
+  //   });
+  // }, [genderList.data]);
+
   const renderCategoryListHome = useMemo(() => {
     return categoryList.data.map((item) => {
       return (
@@ -153,8 +153,7 @@ function HomeWrapper() {
         </Carousel>
       </S.Carousel>
       <Row gutter={[16, 16]} style={{ marginTop: 16 }}>
-        <Col span={12}>{renderProductListMan()}</Col>
-        <Col span={12}>{renderProductListWomen()}</Col>
+        {/* {renderGenderList} */}
       </Row>
       <Divider style={{ borderColor: "#5b5b5b" }}>
         <h3>THƯƠNG HIỆU NỔI BẬT</h3>

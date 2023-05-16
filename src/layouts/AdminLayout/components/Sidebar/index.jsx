@@ -5,28 +5,12 @@ import { ROUTES } from "../../../../constants/routes";
 
 const SIDEBAR_ITEMS = [
   {
-    label: "Home",
-    path: ROUTES.USER.HOME,
+    label: "Dashboard",
+    path: ROUTES.ADMIN.DASHBOARD,
   },
   {
-    label: "About",
-    path: ROUTES.USER.ABOUT,
-  },
-  {
-    label: "Login",
-    path: ROUTES.LOGIN,
-  },
-  {
-    label: "Register",
-    path: ROUTES.REGISTER,
-  },
-  {
-    label: "ToDoList",
-    path: ROUTES.ADMIN.TODO_LIST,
-  },
-  {
-    label: "ToDoList2",
-    path: ROUTES.ADMIN.TODO_LIST2,
+    label: "Quản lý sản phẩm",
+    path: ROUTES.ADMIN.PRODUCT_MANAGEMENT,
   },
 ];
 
@@ -42,6 +26,7 @@ function Sidebar(props) {
           key={index}
           to={item.path}
           active={pathname === item.path}
+          style={{ margin: "6px" }}
         >
           {item.label}
         </S.SidebarItem>

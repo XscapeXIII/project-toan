@@ -33,6 +33,6 @@ export const SidebarItem = styled(Link)`
   ${(props) =>
     props.active &&
     css`
-      background-color: #0fd961;
+      background-color: #43c778;
     `}
 `;

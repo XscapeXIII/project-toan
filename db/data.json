@@ -25,84 +25,96 @@
       "name": "Đồng hồ Rolex Datejust 1111",
       "price": 35000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 1
+      "categoryId": 1,
+      "genderId": 1
     },
     {
       "id": 2,
       "name": "Đồng hồ Rolex Submarine 1111",
       "price": 40000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 1
+      "categoryId": 1,
+      "genderId": 1
     },
     {
       "id": 3,
       "name": "Đồng hồ Hublot Classic red",
       "price": 20000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 2
+      "categoryId": 2,
+      "genderId": 1
     },
     {
       "id": 4,
       "name": "Đồng hồ Hublot Bigbang",
       "price": 25000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 2
+      "categoryId": 2,
+      "genderId": 1
     },
     {
       "id": 5,
       "name": "Đồng hồ Hublot Classic blue",
       "price": 38000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 2
+      "categoryId": 2,
+      "genderId": 1
     },
     {
       "id": 6,
       "name": "Đồng hồ Patek Philippe Complication",
       "price": 15000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 3
+      "categoryId": 3,
+      "genderId": 1
     },
     {
       "id": 7,
       "name": "Đồng hồ Patek Philippe Nautilus",
       "price": 18000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 3
+      "categoryId": 3,
+      "genderId": 2
     },
     {
       "id": 8,
       "name": "Đồng hồ Patek Philippe Aquanaut",
       "price": 23000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 3
+      "categoryId": 3,
+      "genderId": 2
     },
     {
       "id": 9,
       "name": "Đồng hồ Rolex Day-date 1111",
       "price": 15000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 1
+      "categoryId": 1,
+      "genderId": 2
     },
     {
       "id": 10,
       "name": "Đồng hồ Rolex Day-date 2222",
       "price": 18000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 1
+      "categoryId": 1,
+      "genderId": 2
     },
     {
       "id": 11,
       "name": "Đồng hồ Rolex Day-date 2333",
       "price": 28000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 1
+      "categoryId": 1,
+      "genderId": 2
     },
     {
       "id": 12,
       "name": "Đồng hồ Hublot Classic green",
       "price": 28000000,
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
-      "categoryId": 2
+      "categoryId": 2,
+      "genderId": 2
     }
   ],
   "categories": [
@@ -120,6 +132,18 @@
       "id": 3,
       "name": "PatekPhilippe",
       "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/54056d771544d41a8d553.jpg"
+    }
+  ],
+  "gender": [
+    {
+      "id": 1,
+      "gender": "man",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Men2-500x618.jpg"
+    },
+    {
+      "id": 2,
+      "gender": "woman",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2022/05/Banchaynhat_Lady2-768x949.jpg"
     }
   ],
   "reviews": [
@@ -176,6 +200,15 @@
       "createdAt": 1682507427213,
       "updatedAt": 1682507427213,
       "id": 5
+    },
+    {
+      "rate": 3,
+      "comment": "ádasd",
+      "userId": 2,
+      "productId": 7,
+      "createdAt": 1684159694985,
+      "updatedAt": 1684159694985,
+      "id": 6
     }
   ],
   "orders": [
@@ -226,6 +259,22 @@
       "createdAt": 1683971828292,
       "updatedAt": 1683971828292,
       "id": 3
+    },
+    {
+      "fullName": "Toàn",
+      "email": "vvtoan@yahoo.com",
+      "phoneNumber": "0868865268",
+      "cityCode": "01",
+      "districtCode": "001",
+      "wardCode": "00007",
+      "address": "123123",
+      "paymentMethod": "cod",
+      "userId": 2,
+      "totalPrice": 60000000,
+      "status": "pending",
+      "createdAt": 1684152771094,
+      "updatedAt": 1684152771094,
+      "id": 4
     }
   ],
   "orderDetails": [
@@ -278,6 +327,28 @@
       "createdAt": 1683971828374,
       "updatedAt": 1683971828374,
       "id": 5
+    },
+    {
+      "orderId": 4,
+      "productId": 3,
+      "name": "Đồng hồ Hublot Classic red",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
+      "price": 20000000,
+      "quantity": 1,
+      "createdAt": 1684152771217,
+      "updatedAt": 1684152771217,
+      "id": 6
+    },
+    {
+      "orderId": 4,
+      "productId": 2,
+      "name": "Đồng hồ Rolex Submarine 1111",
+      "img": "https://luxurywatchvip.vn/wp-content/uploads/2023/04/avr-4.jpg",
+      "price": 40000000,
+      "quantity": 1,
+      "createdAt": 1684152771287,
+      "updatedAt": 1684152771288,
+      "id": 7
     }
   ],
   "cities": [

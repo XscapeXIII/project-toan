@@ -6,12 +6,12 @@ export const Headerwrapper = styled.div`
   left: 0;
   width: 100%;
   display: flex;
+  height: 91px;
+  z-index: 30;
+  background-color: #5b5b5b;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
-  height: 91px;
-  z-index: 99;
-  background-color: ${(props) => props.theme.header};
+  padding: 16px;
 `;
 
 export const Buttonsidebar = styled.button`

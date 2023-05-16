@@ -1,20 +1,20 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  categoryList: {
+  genderList: {
     data: [],
     load: false,
     error: "",
   },
 };
 
-const categoryReducer = createReducer(initialState, {
+const genderReducer = createReducer(initialState, {
   //CATEGORIES
   GET_CATEGORY_LIST_REQUEST: (state, action) => {
     return {
       ...state,
-      categoryList: {
-        ...state.categoryList,
+      genderList: {
+        ...state.genderList,
         load: true,
       },
     };
@@ -23,8 +23,8 @@ const categoryReducer = createReducer(initialState, {
     const { data } = action.payload;
     return {
       ...state,
-      categoryList: {
-        ...state.categoryList,
+      genderList: {
+        ...state.genderList,
         data: data,
         load: false,
       },
@@ -34,8 +34,8 @@ const categoryReducer = createReducer(initialState, {
     const { error } = action.payload;
     return {
       ...state,
-      categoryList: {
-        ...state.categoryList,
+      genderList: {
+        ...state.genderList,
         load: false,
         error: error,
       },
@@ -43,4 +43,4 @@ const categoryReducer = createReducer(initialState, {
   },
 });
 
-export default categoryReducer;
+export default genderReducer;

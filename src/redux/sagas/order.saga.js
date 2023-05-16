@@ -12,6 +12,7 @@ function* orderProductSaga(action) {
         orderId: result.data.id,
         productId: products[i].id,
         name: products[i].name,
+        img: products[i].img,
         price: products[i].price,
         quantity: products[i].quantity,
       });

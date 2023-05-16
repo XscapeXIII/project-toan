@@ -24,7 +24,6 @@ function CartPage() {
   const navigate = useNavigate();
 
   const { cartList } = useSelector((state) => state.cart);
-  const { productList } = useSelector((state) => state.product);
   const dispatch = useDispatch();
 
   const cartTotalPrice = cartList.reduce(
@@ -115,7 +114,7 @@ function CartPage() {
       title: "",
       dataIndex: "total",
       key: "total",
-      render: (_, item) => `${cartTotalPrice?.toLocaleString()} ₫`,
+      render: () => `${cartTotalPrice?.toLocaleString()} ₫`,
     },
   ];
   const dataTableTotal = [
@@ -134,10 +133,6 @@ function CartPage() {
             title: "Giỏ hàng",
             icon: <UserOutlined />,
           },
-          // {
-          //   title: "Thông tin giỏ hàng",
-          //   icon: <SolutionOutlined />,
-          // },
           {
             title: "Chi tiết thanh toán",
             icon: <CreditCardOutlined />,

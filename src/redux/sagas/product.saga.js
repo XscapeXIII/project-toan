@@ -70,6 +70,33 @@ function* getProductDetailSaga(action) {
   }
 }
 
+function* createProductSaga(action) {
+  try {
+    const { data, images, callback } = action.payload;
+    const result = yield axios.post("http://localhost:5000/products", data);
+    // for (let i = 0; i < images.length; i++) {
+    //   yield axios.post("http://localhost:5000/images", {
+    //     ...images[i],
+    //     productId: result.data.id,
+    //   });
+    // }
+    yield callback();
+    yield put({
+      type: SUCCESS(PRODUCT_ACTION.CREATE_PRODUCT),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(PRODUCT_ACTION.CREATE_PRODUCT),
+      payload: {
+        error: "Đã có lỗi xảy ra!",
+      },
+    });
+  }
+}
+
 export default function* productSaga() {
   yield debounce(
     300,
@@ -80,4 +107,5 @@ export default function* productSaga() {
     REQUEST(PRODUCT_ACTION.GET_PRODUCT_DETAIL),
     getProductDetailSaga
   );
+  yield takeEvery(REQUEST(PRODUCT_ACTION.CREATE_PRODUCT), createProductSaga);
 }
