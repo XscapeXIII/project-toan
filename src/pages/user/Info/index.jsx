@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import {
   Steps,
@@ -115,6 +115,7 @@ function InfoPage() {
     0
   );
 
+  if (!cartList.length) return <Navigate to={ROUTES.USER.CART_LIST} />;
   return (
     <S.InfoWrapper>
       <Steps

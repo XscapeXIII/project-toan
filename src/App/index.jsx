@@ -15,7 +15,7 @@ import FormLayout from "../layouts/FormLayout";
 import Dashboard from "../pages/admin/Dashboard";
 import ProductManagementPage from "../pages/admin/ProductManagement";
 import CreateProductPage from "../pages/admin/CreateProduct";
-import UpdateProductPage from "../pages/admin/UpdateProduct";
+// import UpdateProductPage from "../pages/admin/UpdateProduct";
 
 import { ROUTES } from "../constants/routes";
 import { getUserInfoAction } from "../redux/actions";
@@ -24,6 +24,10 @@ import HomePage from "../pages/user/Home";
 import ProductListPage from "../pages/user/ProductList";
 import AboutPage from "../pages/user/About";
 import AboutPagePolicy from "../pages/user/AboutPolicy";
+import New1Page from "../pages/user/New1";
+import New2Page from "../pages/user/New2";
+import New3Page from "../pages/user/New3";
+import New4Page from "../pages/user/New4";
 import CartPage from "../pages/user/Cart";
 import InfoPage from "../pages/user/Info";
 import SuccessPage from "../pages/user/CheckoutSuccess";
@@ -71,10 +75,10 @@ function App() {
               path={ROUTES.ADMIN.CREATE_PRODUCT}
               element={<CreateProductPage />}
             />
-            <Route
+            {/* <Route
               path={ROUTES.ADMIN.UPDATE_PRODUCT}
               element={<UpdateProductPage />}
-            />
+            /> */}
           </Route>
           <Route element={<UserLayout />}>
             <Route path={ROUTES.USER.HOME} element={<HomePage />} />
@@ -90,6 +94,11 @@ function App() {
             <Route path={ROUTES.USER.CART_LIST} element={<CartPage />} />
             <Route path={ROUTES.USER.CHECKOUT_INFO} element={<InfoPage />} />
             <Route path={ROUTES.USER.PROFILE} element={<ProfilePage />} />
+            <Route path={ROUTES.USER.NEWS_1} element={<New1Page />} />
+            <Route path={ROUTES.USER.NEWS_2} element={<New2Page />} />
+            <Route path={ROUTES.USER.NEWS_3} element={<New3Page />} />
+            <Route path={ROUTES.USER.NEWS_4} element={<New4Page />} />
+
             <Route
               path={ROUTES.USER.CHECKOUT_SUCCESS}
               element={<SuccessPage />}

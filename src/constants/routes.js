@@ -8,6 +8,10 @@ export const ROUTES = {
     CHECKOUT_SUCCESS: "/checkout/success",
     ABOUT: "/about",
     ABOUT_POLICY: "/about/chinh-sach",
+    NEWS_1: "/new/1",
+    NEWS_2: "/new/2",
+    NEWS_3: "/new/3",
+    NEWS_4: "/new/4",
     PROFILE: "/profile",
   },
   ADMIN: {

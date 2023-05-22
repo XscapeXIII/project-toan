@@ -22,7 +22,14 @@ function AdminHeader() {
     <S.Headerwrapper>
       <S.HeaderContainer>
         <S.HeaderContent>
-          <div>Logo</div>
+          <Link to={ROUTES.USER.HOME}>
+            <img
+              alt=""
+              src="https://luxurywatchvip.vn/wp-content/uploads/2022/07/20220703-logo-trali-LW-doi-slogan-1024x777.png"
+              width="60px"
+              height="auto"
+            />
+          </Link>
           <Input placeholder="Search..." style={{ width: 250 }} />
           <div>
             <Space size={10} style={{ color: "white" }}>
@@ -153,6 +160,7 @@ function AdminHeader() {
                         <Link
                           to={ROUTES.USER.PRODUCT_LIST}
                           state={{ categoryId: 2 }}
+                          replace
                         >
                           ĐỒNG HỒ HUBLOT
                         </Link>

@@ -54,7 +54,9 @@ const OrderHistories = () => {
           <ul>
             {record.orderDetails.map((item) => (
               <li key={item.id}>
-                {item.img}
+                {item.img && (
+                  <img alt="" src={item.img} width="60px" height="auto" />
+                )}
                 {item.name}
                 {` - ${item.price}`}
                 {` - ${item.quantity}`}

@@ -1,0 +1,3 @@
+export const GENDER_ACTION = {
+  GET_GENDER_LIST: "GENDER/GET_GENDER_LIST",
+};

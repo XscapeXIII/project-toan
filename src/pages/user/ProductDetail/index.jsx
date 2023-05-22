@@ -14,9 +14,13 @@ import {
   notification,
   Breadcrumb,
   Tabs,
+  Divider,
+  Carousel,
 } from "antd";
 import moment from "moment";
 import * as S from "./styles";
+
+import { SimpleSlider } from "./SimpleSlider";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -38,13 +42,12 @@ function ProductDetailPage() {
   const { productDetail, productList } = useSelector((state) => state.product);
   const { userInfo } = useSelector((state) => state.auth);
   const { reviewList } = useSelector((state) => state.review);
-  const { categoryList } = useSelector((state) => state.category);
 
   const totalRate = useMemo(
     () =>
       reviewList.data.length
         ? reviewList.data
-            .map((item) => item.rate)
+            ?.map((item) => item.rate)
             .reduce((total, item) => total + item)
         : 0,
     [reviewList.data]
@@ -61,34 +64,28 @@ function ProductDetailPage() {
     );
   }, [dispatch, id]);
 
-  const renderProductListHome = useMemo(() => {
-    return productList.data.map((item) => {
-      return (
-        <Col key={item.id} xs={6}>
-          <Link
-            to={generatePath(ROUTES.USER.PRODUCT_DETAIL, {
-              id: item.id,
-            })}
-          >
-            <Card
-              title={item.category?.name}
-              size="small"
-              style={{
-                textAlign: "center",
-              }}
-            >
-              <img alt="" src={item.img} />
-              <p>{item.name}</p>
-              <p>{item.price.toLocaleString()} ₫</p>
-              <Button onClick={() => handleAddToCard(item)}>
-                Thêm vào giỏ hàng
-              </Button>
-            </Card>
-          </Link>
-        </Col>
-      );
-    });
-  }, [productList.data]);
+  // const renderProductList = useMemo(() => {
+  //   return productList.data.map((item) => {
+  //     return (
+  //       <Col key={item.id} xs={6}>
+  //         <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
+  //           <Card
+  //             title={item.category?.name}
+  //             size="small"
+  //             style={{ textAlign: "center" }}
+  //           >
+  //             <img key={item.id} alt="" src={item?.images[0]?.url} />
+  //             <p>{item.name}</p>
+  //             <p>{item.price.toLocaleString()} ₫</p>
+  //             <Button onClick={() => handleAddToCard(item)}>
+  //               Thêm vào giỏ hàng
+  //             </Button>
+  //           </Card>
+  //         </Link>
+  //       </Col>
+  //     );
+  //   });
+  // }, [productList.data]);
 
   const handleReview = (values) => {
     dispatch(
@@ -104,7 +101,7 @@ function ProductDetailPage() {
   };
 
   const renderReviewList = useMemo(() => {
-    return reviewList.data.map((item) => {
+    return reviewList.data?.map((item) => {
       return (
         <Card size="small" key={item.id}>
           <Space>
@@ -127,13 +124,19 @@ function ProductDetailPage() {
         name: productDetail.data.name,
         price: productDetail.data.price,
         quantity: quantity,
-        img: productDetail.data.price,
+        img: productDetail.data.images[0]?.url,
       })
     );
     notification.success({
       message: "Thêm vào giỏ hàng thành công ^^!",
     });
   };
+
+  const renderProductImages = useMemo(() => {
+    return productDetail.data?.images?.map((item) => {
+      return <img key={item.id} alt="" src={item.url} />;
+    });
+  }, [productDetail.data.images]);
 
   return (
     <S.ProductDetailWrapper>
@@ -151,18 +154,26 @@ function ProductDetailPage() {
             },
             {
               title: (
-                <Link to={ROUTES.USER.PRODUCT_LIST}>
+                <Link
+                  to={ROUTES.USER.PRODUCT_LIST}
+                  state={{ categoryId: productDetail.data.category?.id }}
+                >
                   {productDetail.data.category?.name}
                 </Link>
               ),
             },
+            {
+              title: productDetail.data.name,
+            },
           ]}
         />
-        <Row>
-          <Col span={8}>
-            <img alt="" src={productDetail.data.img} />
+        <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
+          <Col span={10}>
+            <Carousel autoplay pauseOnHover pauseOnDotsHover draggable>
+              {renderProductImages}
+            </Carousel>
           </Col>
-          <Col span={16}>
+          <Col span={14}>
             <div>
               <h1>{productDetail.data.name}</h1>
               <Space>
@@ -172,7 +183,11 @@ function ProductDetailPage() {
                   : `(Chưa có đánh giá)`}
               </Space>
               {/* <p>{productDetail.data.category?.name}</p> */}
-              <p>Thông số sản phẩm (content)</p>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: productDetail.data.miniContent,
+                }}
+              />
               <h2>{productDetail.data.price?.toLocaleString()} ₫</h2>
               <Space>
                 <InputNumber
@@ -187,17 +202,23 @@ function ProductDetailPage() {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row justify="center" style={{ display: "flex" }}>
           <Col span={24}>
             <Tabs
               items={[
                 {
                   label: "Chi tiết về sản phẩm",
                   key: 1,
-                  children: null,
+                  children: (
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: productDetail.data.content,
+                      }}
+                    />
+                  ),
                 },
                 {
-                  label: "Đánh giá sản phẩm: ",
+                  label: "Review sản phẩm",
                   key: 2,
                   children: (
                     <div>
@@ -253,8 +274,12 @@ function ProductDetailPage() {
             ></Tabs>
           </Col>
         </Row>
-        <p>Sản Phẩm Tương Tự</p>
-        <Row gutter={[16, 16]}>{renderProductListHome}</Row>
+        <Divider style={{ borderColor: "#5b5b5b" }}>
+          <h3>SẢN PHẨM TƯƠNG TỰ</h3>
+        </Divider>
+        <div>
+          <SimpleSlider />
+        </div>
       </Spin>
     </S.ProductDetailWrapper>
   );

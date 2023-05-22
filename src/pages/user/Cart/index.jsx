@@ -36,14 +36,12 @@ function CartPage() {
       title: "TÊN SẢN PHẨM",
       dataIndex: "name",
       key: "name",
-    },
-    {
-      title: "",
-      dataIndex: "img",
-      width: 100,
-      maxWidth: 100,
-      key: "img",
-      render: (_, item) => <img alt="" src={item.img} />,
+      render: (_, item) => (
+        <Space style={{ width: 300 }}>
+          <img alt="" src={item.img} width="60px" height="auto" />
+          <h3>{item.name}</h3>
+        </Space>
+      ),
     },
     {
       title: "GIÁ",
@@ -144,7 +142,7 @@ function CartPage() {
         ]}
       />
 
-      <Row>
+      <Row gutter={[24, 36]}>
         <Col span={16} style={{ padding: "16px" }}>
           <Table
             columns={tableColumn}

@@ -1,4 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { GENDER_ACTION, REQUEST, SUCCESS, FAIL } from "redux/constants";
 
 const initialState = {
   genderList: {
@@ -9,8 +10,8 @@ const initialState = {
 };
 
 const genderReducer = createReducer(initialState, {
-  //CATEGORIES
-  GET_CATEGORY_LIST_REQUEST: (state, action) => {
+  //GET GENDER LIST
+  [REQUEST(GENDER_ACTION.GET_GENDER_LIST)]: (state, action) => {
     return {
       ...state,
       genderList: {
@@ -19,7 +20,7 @@ const genderReducer = createReducer(initialState, {
       },
     };
   },
-  GET_CATEGORY_LIST_SUCCESS: (state, action) => {
+  [SUCCESS(GENDER_ACTION.GET_GENDER_LIST)]: (state, action) => {
     const { data } = action.payload;
     return {
       ...state,
@@ -30,7 +31,7 @@ const genderReducer = createReducer(initialState, {
       },
     };
   },
-  GET_CATEGORY_LIST_FAIL: (state, action) => {
+  [FAIL(GENDER_ACTION.GET_GENDER_LIST)]: (state, action) => {
     const { error } = action.payload;
     return {
       ...state,

@@ -14,7 +14,7 @@ export const HomeWrapper = styled.div`
 
 export const Carousel = styled.div`
   display: block;
-  height: 300px;
+  height: 600px;
   width: 100%;
   margin-bottom: 16px;
   margin: 0 auto;
@@ -23,7 +23,7 @@ export const Carousel = styled.div`
 
 export const CarouselImg1 = styled.div`
   width: 100%;
-  height: 300px;
+  height: 600px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -31,7 +31,7 @@ export const CarouselImg1 = styled.div`
 `;
 export const CarouselImg2 = styled.div`
   width: 100%;
-  height: 300px;
+  height: 600px;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -40,7 +40,7 @@ export const CarouselImg2 = styled.div`
 `;
 export const CarouselImg3 = styled.div`
   width: 100%;
-  height: 300px;
+  height: 600px;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -49,7 +49,7 @@ export const CarouselImg3 = styled.div`
 `;
 export const CarouselImg4 = styled.div`
   width: 100%;
-  height: 300px;
+  height: 600px;
 
   background-repeat: no-repeat;
   background-position: center;

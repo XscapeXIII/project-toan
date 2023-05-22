@@ -20,7 +20,8 @@ const CreateProductPage = () => {
 
   const [createForm] = Form.useForm();
 
-  const { categoryList, genderList } = useSelector((state) => state.category);
+  const { categoryList } = useSelector((state) => state.category);
+  const { genderList } = useSelector((state) => state.gender);
   const { createProductData } = useSelector((state) => state.product);
 
   const initialValues = {
@@ -36,7 +37,7 @@ const CreateProductPage = () => {
   useEffect(() => {
     dispatch(getCategoryListAction());
     dispatch(getGenderListAction());
-  }, [dispatch]);
+  }, []);
 
   const convertImageToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -70,13 +71,21 @@ const CreateProductPage = () => {
 
   const renderProductOptions = useMemo(() => {
     return categoryList.data.map((item) => {
-      return <Select.Option key={item.id}>{item.name}</Select.Option>;
+      return (
+        <Select.Option key={item.id} value={item.id}>
+          {item.name}
+        </Select.Option>
+      );
     });
   }, [categoryList.data]);
 
   const renderGenderOptions = useMemo(() => {
     return genderList.data.map((item) => {
-      return <Select.Option key={item.id}>{item.name}</Select.Option>;
+      return (
+        <Select.Option key={item.id} value={item.id}>
+          {item.name}
+        </Select.Option>
+      );
     });
   }, [genderList.data]);
 
@@ -159,7 +168,7 @@ const CreateProductPage = () => {
           <ReactQuill
             theme="snow"
             onChange={(value) => {
-              createForm.setFieldsValue({ content: value });
+              createForm.setFieldsValue({ miniContent: value });
             }}
           />
         </Form.Item>

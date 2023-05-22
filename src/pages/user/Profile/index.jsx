@@ -9,6 +9,7 @@ function Profile() {
   return (
     <S.ProfileWrapper>
       <Tabs
+        style={{ marginTop: "16px" }}
         tabPosition="left"
         items={[
           {

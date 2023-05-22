@@ -5,17 +5,20 @@ import { PRODUCT_ACTION, REQUEST, SUCCESS, FAIL } from "../constants/";
 
 function* getProductListSaga(action) {
   try {
-    const { page, limit, categoryId, more, searchKey, sort } = action.payload;
+    const { page, limit, categoryId, genderId, more, searchKey, sort } =
+      action.payload;
 
     const result = yield axios.get("http://localhost:5000/products", {
       params: {
         //relationship
         _expand: "category",
+        _embed: "images",
         //paging
         _page: page,
         _limit: limit,
         //filter
         categoryId: categoryId,
+        genderId: genderId,
         q: searchKey,
         ...(sort && {
           _sort: sort.split(".")[0],
@@ -52,6 +55,7 @@ function* getProductDetailSaga(action) {
     const result = yield axios.get(`http://localhost:5000/products/${id}`, {
       params: {
         _expand: "category",
+        _embed: ["images", "reviews"],
       },
     });
     yield put({
@@ -74,12 +78,12 @@ function* createProductSaga(action) {
   try {
     const { data, images, callback } = action.payload;
     const result = yield axios.post("http://localhost:5000/products", data);
-    // for (let i = 0; i < images.length; i++) {
-    //   yield axios.post("http://localhost:5000/images", {
-    //     ...images[i],
-    //     productId: result.data.id,
-    //   });
-    // }
+    for (let i = 0; i < images.length; i++) {
+      yield axios.post("http://localhost:5000/images", {
+        ...images[i],
+        productId: result.data.id,
+      });
+    }
     yield callback();
     yield put({
       type: SUCCESS(PRODUCT_ACTION.CREATE_PRODUCT),
