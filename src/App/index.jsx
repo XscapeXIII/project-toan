@@ -15,7 +15,7 @@ import FormLayout from "../layouts/FormLayout";
 import Dashboard from "../pages/admin/Dashboard";
 import ProductManagementPage from "../pages/admin/ProductManagement";
 import CreateProductPage from "../pages/admin/CreateProduct";
-// import UpdateProductPage from "../pages/admin/UpdateProduct";
+import UpdateProductPage from "../pages/admin/UpdateProduct";
 
 import { ROUTES } from "../constants/routes";
 import { getUserInfoAction } from "../redux/actions";
@@ -75,10 +75,10 @@ function App() {
               path={ROUTES.ADMIN.CREATE_PRODUCT}
               element={<CreateProductPage />}
             />
-            {/* <Route
+            <Route
               path={ROUTES.ADMIN.UPDATE_PRODUCT}
               element={<UpdateProductPage />}
-            /> */}
+            />
           </Route>
           <Route element={<UserLayout />}>
             <Route path={ROUTES.USER.HOME} element={<HomePage />} />

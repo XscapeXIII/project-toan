@@ -16,8 +16,7 @@ export const Carousel = styled.div`
   display: block;
   height: 600px;
   width: 100%;
-  margin-bottom: 16px;
-  margin: 0 auto;
+  margin-top: 16px;
   background-color: aliceblue;
 `;
 

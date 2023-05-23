@@ -24,6 +24,7 @@ function* getProductListSaga(action) {
           _sort: sort.split(".")[0],
           _order: sort.split(".")[1],
         }),
+        isDelete: false,
       },
     });
     yield put({
@@ -56,6 +57,7 @@ function* getProductDetailSaga(action) {
       params: {
         _expand: "category",
         _embed: ["images", "reviews"],
+        isDelete: false,
       },
     });
     yield put({
@@ -101,6 +103,76 @@ function* createProductSaga(action) {
   }
 }
 
+function* updateProductSaga(action) {
+  try {
+    const { id, data, images, initialImageIds, callback } = action.payload;
+    const result = yield axios.patch(
+      `http://localhost:5000/products/${id}`,
+      data
+    );
+    for (let i = 0; i < images.length; i++) {
+      if (!images[i].id) {
+        yield axios.post("http://localhost:5000/images", {
+          ...images[i],
+          productId: result.data.id,
+        });
+      }
+    }
+    for (let j = 0; j < initialImageIds.length; j++) {
+      const keepImage = images.find(
+        (item) => item.id && item.id === initialImageIds[j]
+      );
+      if (!keepImage) {
+        yield axios.delete(
+          `http://localhost:5000/images/${initialImageIds[j]}`
+        );
+      }
+    }
+    yield callback();
+    yield put({
+      type: SUCCESS(PRODUCT_ACTION.UPDATE_PRODUCT),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(PRODUCT_ACTION.UPDATE_PRODUCT),
+      payload: {
+        error: "Đã có lỗi xảy ra!",
+      },
+    });
+  }
+}
+
+function* deleteProductSaga(action) {
+  try {
+    const { id, ...filterParams } = action.payload;
+    const result = yield axios.patch(`http://localhost:5000/products/${id}`, {
+      isDelete: true,
+    });
+    yield put({
+      type: REQUEST(PRODUCT_ACTION.GET_PRODUCT_LIST),
+      payload: {
+        ...filterParams,
+      },
+    });
+    yield put({
+      type: SUCCESS(PRODUCT_ACTION.DELETE_PRODUCT),
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: FAIL(PRODUCT_ACTION.DELETE_PRODUCT),
+      payload: {
+        error: "Đã có lỗi xảy ra!",
+      },
+    });
+  }
+}
+
 export default function* productSaga() {
   yield debounce(
     300,
@@ -112,4 +184,6 @@ export default function* productSaga() {
     getProductDetailSaga
   );
   yield takeEvery(REQUEST(PRODUCT_ACTION.CREATE_PRODUCT), createProductSaga);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.UPDATE_PRODUCT), updateProductSaga);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.DELETE_PRODUCT), deleteProductSaga);
 }

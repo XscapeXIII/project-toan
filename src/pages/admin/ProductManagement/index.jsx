@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, generatePath } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -11,17 +11,23 @@ import {
   Space,
   Avatar,
   Pagination,
+  Popconfirm,
 } from "antd";
 
 import { ROUTES } from "constants/routes";
 import { ADMIN_TABLE_LIMIT } from "constants/paging";
-import { getProductListAction, getCategoryListAction } from "redux/actions";
+import {
+  getProductListAction,
+  getCategoryListAction,
+  deleteProductAction,
+} from "redux/actions";
 import * as S from "./styles";
 
 function ProductManagement() {
   const [filterParams, setFilterParams] = useState({
     categoryId: [],
     searchKey: "",
+    sort: "id.desc",
   });
 
   const dispatch = useDispatch();
@@ -77,17 +83,33 @@ function ProductManagement() {
             <Button
               type="primary"
               ghost
-              // onClick={() =>
-              //   navigate(
-              //     generatePath(ROUTES.ADMIN.UPDATE_PRODUCT, { id: item.id })
-              //   )
-              // }
+              onClick={() =>
+                navigate(
+                  generatePath(ROUTES.ADMIN.UPDATE_PRODUCT, { id: item.id })
+                )
+              }
             >
               Update
             </Button>
-            <Button ghost danger>
-              Delete
-            </Button>
+            <Popconfirm
+              title="Bạn có chắc muốn xóa sản phẩm này không?"
+              onConfirm={() =>
+                dispatch(
+                  deleteProductAction({
+                    ...filterParams,
+                    id: item.id,
+                    page: 1,
+                    limit: ADMIN_TABLE_LIMIT,
+                  })
+                )
+              }
+              okText="Xóa"
+              cancelText="Hủy"
+            >
+              <Button ghost danger>
+                Delete
+              </Button>
+            </Popconfirm>
           </Space>
         );
       },

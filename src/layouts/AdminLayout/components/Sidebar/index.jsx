@@ -12,6 +12,10 @@ const SIDEBAR_ITEMS = [
     label: "Quản lý sản phẩm",
     path: ROUTES.ADMIN.PRODUCT_MANAGEMENT,
   },
+  {
+    label: "Chỉnh sửa sản phẩm",
+    path: ROUTES.ADMIN.UPDATE_PRODUCT,
+  },
 ];
 
 function Sidebar(props) {
