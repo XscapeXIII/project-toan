@@ -4,6 +4,7 @@ export * from "./gender.constant";
 export * from "./auth.constant";
 export * from "./user.constant";
 export * from "./review.constant";
+export * from "./favorite.constant";
 export * from "./cart.constant";
 export * from "./order.constant";
 export * from "./location.constant";

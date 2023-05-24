@@ -67,12 +67,10 @@ function HomeWrapper() {
                 {/* //thay img bang div css vào background */}
                 <img key={item.id} alt="" src={item?.images[0]?.url} />
                 <p>{item.name}</p>
-                <h4 style={{ color: "orange" }}>
-                  {item.price.toLocaleString()} ₫
-                </h4>
+                <h4 style={{ color: "" }}>{item.price.toLocaleString()} ₫</h4>
                 <Button
                   type="outline"
-                  style={{ backgroundColor: "grey" }}
+                  style={{ backgroundColor: "" }}
                   onClick={() => handleAddToCard(item)}
                 >
                   Thêm vào giỏ hàng

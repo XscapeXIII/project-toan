@@ -113,7 +113,9 @@ function AdminHeader() {
                 }}
               >
                 <Space size={3} style={{ cursor: "pointer" }}>
-                  <Link to={ROUTES.USER.HOME}>TRANG CHỦ</Link>
+                  <Link style={{ color: "white" }} to={ROUTES.USER.HOME}>
+                    TRANG CHỦ
+                  </Link>
                 </Space>
               </Dropdown>
             </div>
@@ -160,7 +162,6 @@ function AdminHeader() {
                         <Link
                           to={ROUTES.USER.PRODUCT_LIST}
                           state={{ categoryId: 2 }}
-                          replace
                         >
                           ĐỒNG HỒ HUBLOT
                         </Link>
@@ -181,7 +182,12 @@ function AdminHeader() {
                 }}
               >
                 <Space size={3} style={{ cursor: "pointer" }}>
-                  <Link to={ROUTES.USER.PRODUCT_LIST}>DANH SÁCH SẢN PHẨM</Link>
+                  <Link
+                    style={{ color: "white" }}
+                    to={ROUTES.USER.PRODUCT_LIST}
+                  >
+                    DANH SÁCH SẢN PHẨM
+                  </Link>
                   <DownOutlined style={{ fontSize: "12px" }} />
                 </Space>
               </Dropdown>

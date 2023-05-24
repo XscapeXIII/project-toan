@@ -17,6 +17,11 @@ import {
   Divider,
   Carousel,
 } from "antd";
+import {
+  ShoppingCartOutlined,
+  HeartOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import moment from "moment";
 import * as S from "./styles";
 
@@ -29,6 +34,8 @@ import {
   getReviewListAction,
   sendReviewAction,
   addToCartAction,
+  favoriteProductAction,
+  unFavoriteProductAction,
 } from "../../../redux/actions";
 import { ROUTES } from "../../../constants/routes";
 import { PRODUCT_LIMIT } from "../../../constants/paging";
@@ -51,6 +58,14 @@ function ProductDetailPage() {
             .reduce((total, item) => total + item)
         : 0,
     [reviewList.data]
+  );
+
+  const isLike = useMemo(
+    () =>
+      productDetail.data.favorites?.findIndex(
+        (item) => item.userId === userInfo.data.id
+      ) !== -1,
+    [productDetail.data.favorites, userInfo.data.id]
   );
 
   useEffect(() => {
@@ -98,6 +113,33 @@ function ProductDetailPage() {
         callback: () => reviewForm.resetFields(),
       })
     );
+  };
+
+  const handleToggleFavorite = () => {
+    if (userInfo.data.id) {
+      if (isLike) {
+        const favoriteData = productDetail.data.favorites?.find(
+          (item) => item.userId === userInfo.data.id
+        );
+        dispatch(
+          unFavoriteProductAction({
+            id: favoriteData.id,
+            productId: productDetail.data.id,
+          })
+        );
+      } else {
+        dispatch(
+          favoriteProductAction({
+            productId: productDetail.data.id,
+            userId: userInfo.data.id,
+          })
+        );
+      }
+    } else {
+      notification.error({
+        message: "Vui lòng đăng nhập để thực hiện chức năng này!",
+      });
+    }
   };
 
   const renderReviewList = useMemo(() => {
@@ -195,8 +237,20 @@ function ProductDetailPage() {
                   value={quantity}
                   onChange={(value) => setQuantity(value)}
                 />
-                <Button type="primary" onClick={() => handleAddToCard()}>
+                <Button
+                  type="primary"
+                  icon={<ShoppingCartOutlined />}
+                  onClick={() => handleAddToCard()}
+                >
                   THÊM VÀO GIỎ HÀNG
+                </Button>
+                <Button
+                  size="large"
+                  danger={isLike}
+                  icon={isLike ? <HeartFilled /> : <HeartOutlined />}
+                  onClick={() => handleToggleFavorite()}
+                >
+                  {productDetail.data?.favorites?.length || 0} Ưa Thích
                 </Button>
               </Space>
             </div>

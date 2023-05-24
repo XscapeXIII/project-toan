@@ -35,25 +35,47 @@ import { ROUTES } from "constants/routes";
 function InfoPage() {
   const navigate = useNavigate();
   const [infoForm] = Form.useForm();
-  const initialValues = {};
-
-  useEffect(() => {
-    dispatch(getCityListAction());
-  }, []);
 
   const { cartList } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
   const { cityList, districtList, wardList } = useSelector(
     (state) => state.location
   );
-  const dispatch = useDispatch();
 
+  const initialValues = {
+    fullName: userInfo.data.fullName,
+    email: userInfo.data.email,
+  };
+
+  useEffect(() => {
+    dispatch(getCityListAction());
+  }, []);
+
+  useEffect(() => {
+    if (userInfo.data.id) {
+      infoForm.resetFields();
+    }
+  }, [infoForm, userInfo.data.id]);
+
+  const dispatch = useDispatch();
+  const totalPrice = cartList.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
   const handleSubmitInfoForm = (values) => {
-    console.log(values);
+    const { cityCode, districtCode, wardCode } = values;
+    const cityData = cityList.data.find((item) => item.code === cityCode);
+    const districtData = districtList.data.find(
+      (item) => item.code === districtCode
+    );
+    const wardData = wardList.data.find((item) => item.code === wardCode);
     dispatch(
       orderProductAction({
         data: {
           ...values,
+          cityName: cityData?.name,
+          districtName: districtData?.name,
+          wardName: wardData?.name,
           userId: userInfo.data.id,
           totalPrice: totalPrice,
           status: "pending",
@@ -109,11 +131,6 @@ function InfoPage() {
         `${(item.price * item.quantity)?.toLocaleString()} ₫`,
     },
   ];
-
-  const totalPrice = cartList.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   if (!cartList.length) return <Navigate to={ROUTES.USER.CART_LIST} />;
   return (

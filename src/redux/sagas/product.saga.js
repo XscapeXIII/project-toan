@@ -56,7 +56,7 @@ function* getProductDetailSaga(action) {
     const result = yield axios.get(`http://localhost:5000/products/${id}`, {
       params: {
         _expand: "category",
-        _embed: ["images", "reviews"],
+        _embed: ["images", "reviews", "favorites"],
         isDelete: false,
       },
     });
