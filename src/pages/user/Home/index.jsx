@@ -27,7 +27,9 @@ function HomeWrapper() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductListAction({ page: 1, limit: PRODUCT_HOME }));
+    dispatch(
+      getProductListAction({ page: 1, limit: PRODUCT_HOME, sort: "id.desc" })
+    );
     dispatch(getCategoryListAction());
     dispatch(getGenderListAction());
   }, []);
@@ -50,7 +52,7 @@ function HomeWrapper() {
   const renderProductListHome = useMemo(() => {
     return productList.data.map((item) => {
       return (
-        <Col key={item.id} xs={6}>
+        <Col key={item.id} xs={12} sm={8} md={6}>
           <Link
             to={generatePath(ROUTES.USER.PRODUCT_DETAIL, {
               id: item.id,
@@ -64,15 +66,25 @@ function HomeWrapper() {
                   textAlign: "center",
                 }}
               >
-                {/* //thay img bang div css vào background */}
-                <img key={item.id} alt="" src={item?.images[0]?.url} />
-                <p>{item.name}</p>
-                <h4 style={{ color: "" }}>{item.price.toLocaleString()} ₫</h4>
-                <Button
-                  type="outline"
-                  style={{ backgroundColor: "" }}
-                  onClick={() => handleAddToCard(item)}
-                >
+                <S.CardImg>
+                  <img
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      objectFit: "cover",
+                    }}
+                    key={item.id}
+                    alt=""
+                    src={item?.images[0]?.url}
+                  />
+                </S.CardImg>
+                <S.CardContent>
+                  <p>{item.name}</p>
+                </S.CardContent>
+                <h4>{item.price.toLocaleString()} ₫</h4>
+
+                <Button type="primary" onClick={() => handleAddToCard(item)}>
                   Thêm vào giỏ hàng
                 </Button>
               </Card>
@@ -105,7 +117,7 @@ function HomeWrapper() {
   const renderCategoryListHome = useMemo(() => {
     return categoryList.data.map((item) => {
       return (
-        <Col key={item.id} xs={8}>
+        <Col key={item.id} xs={24} sm={12} md={8}>
           <Link
             //cách lưu trữ luôn cả link khi gửi
             // to={

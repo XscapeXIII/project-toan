@@ -46,7 +46,7 @@ function RegisterPage() {
   return (
     <S.RegisterWrapper>
       <S.RegisterContainer>
-        <h3>Register</h3>
+        <h3>Đăng ký tài khoản</h3>
         <Form
           form={registerForm}
           name="registerForm"
@@ -55,7 +55,7 @@ function RegisterPage() {
           autoComplete="off"
         >
           <Form.Item
-            label="Full name"
+            label="Tên đăng nhập"
             name="fullName"
             rules={[
               {
@@ -85,7 +85,7 @@ function RegisterPage() {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Password"
+            label="Mật khẩu"
             name="password"
             rules={[
               {
@@ -98,7 +98,7 @@ function RegisterPage() {
           </Form.Item>
           <Form.Item
             name="confirm"
-            label="Confirm Password"
+            label="Xác nhận mật khẩu"
             dependencies={["password"]}
             hasFeedback
             rules={[
@@ -128,7 +128,7 @@ function RegisterPage() {
             block
             loading={registerData.load}
           >
-            Submit
+            Tạo tài khoản
           </Button>
         </Form>
       </S.RegisterContainer>

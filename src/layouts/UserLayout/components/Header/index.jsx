@@ -54,7 +54,9 @@ function AdminHeader() {
                       {
                         key: "dashboard",
                         label: (
-                          <Link to={ROUTES.ADMIN.DASHBOARD}>Dashboard</Link>
+                          <Link to={ROUTES.ADMIN.PRODUCT_MANAGEMENT}>
+                            Quản Lý Sản Phẩm
+                          </Link>
                         ),
                         style: {
                           display:
@@ -68,10 +70,6 @@ function AdminHeader() {
                             Tài khoản của tôi
                           </Link>
                         ),
-                        style: {
-                          display:
-                            userInfo.data.role === "user" ? "block" : "none",
-                        },
                       },
                       {
                         key: "logout",
@@ -175,6 +173,72 @@ function AdminHeader() {
                           state={{ categoryId: 3 }}
                         >
                           ĐỒNG HỒ PATEK PHILIPPE
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "franck muller",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 4 }}
+                        >
+                          ĐỒNG HỒ FRANCK MULLER
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "omega",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 5 }}
+                        >
+                          ĐỒNG HỒ OMEGA
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "longines",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 6 }}
+                        >
+                          ĐỒNG HỒ LONGINES
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "breitling",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 7 }}
+                        >
+                          ĐỒNG HỒ BREITLING
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "jlc",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 8 }}
+                        >
+                          ĐỒNG HỒ JLC
+                        </Link>
+                      ),
+                    },
+                    {
+                      key: "zenith",
+                      label: (
+                        <Link
+                          to={ROUTES.USER.PRODUCT_LIST}
+                          state={{ categoryId: 9 }}
+                        >
+                          ĐỒNG HỒ ZENITH
                         </Link>
                       ),
                     },

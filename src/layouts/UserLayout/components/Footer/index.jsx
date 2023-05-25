@@ -1,5 +1,7 @@
 import * as S from "./styles";
-import { Row, Col, Space, Divider } from "antd";
+import { Row, Col, Divider } from "antd";
+import { Link } from "react-router-dom";
+import { ROUTES } from "constants/routes";
 
 function Footer() {
   return (
@@ -58,49 +60,54 @@ function Footer() {
                   border: "1px solid",
                 }}
               />
-              <h5>ĐỒNG HỒ ROLEX</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 1 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ ROLEX</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",
                   margin: "6px 0",
                 }}
               />
-              <h5>ĐỒNG HỒ HUBLOT</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 2 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ HUBLOT</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",
                   margin: "6px 0",
                 }}
               />
-              <h5>ĐỒNG HỒ OMEGA</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 3 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ PATEK PHILIPPE</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",
                   margin: "6px 0",
                 }}
               />
-              <h5>ĐỒNG HỒ LONGINES</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 4 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ FRANCK MULLER</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",
                   margin: "6px 0",
                 }}
               />
-              <h5>ĐỒNG HỒ PATEK PHILIPPE</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 5 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ OMEGA</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",
                   margin: "6px 0",
                 }}
               />
-              <h5>ĐỒNG HỒ FRANCK MULLER</h5>
-              <Divider
-                style={{
-                  borderColor: "#be9191",
-                  margin: "6px 0",
-                }}
-              />
-              <h5>ĐỒNG HỒ NGA</h5>
+              <Link to={ROUTES.USER.PRODUCT_LIST} state={{ categoryId: 6 }}>
+                <h5 style={{ color: "white" }}>ĐỒNG HỒ LONGINES</h5>
+              </Link>
               <Divider
                 style={{
                   borderColor: "#be9191",

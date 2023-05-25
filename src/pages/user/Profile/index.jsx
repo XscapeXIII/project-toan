@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Tabs } from "antd";
 
 import OrderHistories from "./components/OrderHistories";
+import PersonalInfo from "./components/PersonalInfo";
 
 import * as S from "./styles";
 
@@ -15,7 +16,7 @@ function Profile() {
           {
             label: "Thông tin cá nhân",
             key: 1,
-            children: null,
+            children: <PersonalInfo />,
           },
           {
             label: "Lịch sử mua hàng",

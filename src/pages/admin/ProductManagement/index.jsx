@@ -56,7 +56,7 @@ function ProductManagement() {
         return (
           <Space>
             <Avatar src={item.images[0]?.url} />
-            <h4>{item.name}</h4>
+            <h5>{item.name}</h5>
           </Space>
         );
       },

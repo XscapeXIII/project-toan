@@ -15,6 +15,7 @@ import {
   Space,
   Breadcrumb,
   Divider,
+  Pagination,
 } from "antd";
 import * as S from "./styles";
 
@@ -40,7 +41,7 @@ function ProductListPage() {
     genderId: state?.genderId ? [state?.genderId] : [],
     price: [0, 1000000000],
     searchKey: "",
-    sort: "",
+    sort: "id.desc",
   });
 
   useEffect(() => {
@@ -59,8 +60,8 @@ function ProductListPage() {
         categoryId: state?.categoryId ? [state?.categoryId] : [],
         genderId: state?.genderId ? [state?.genderId] : [],
         page: 1,
-        limit: [PRODUCT_LIMIT, PRODUCT_LIMIT_FILTER],
-        sort: "id.desc",
+        limit: PRODUCT_LIMIT,
+        sort: "id.asc",
       })
     );
   }, [state]);
@@ -75,7 +76,7 @@ function ProductListPage() {
         ...filterParams,
         [key]: values,
         page: 1,
-        limit: [PRODUCT_LIMIT, PRODUCT_LIMIT_FILTER],
+        limit: PRODUCT_LIMIT,
       })
     );
   };
@@ -110,20 +111,36 @@ function ProductListPage() {
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
-        <Col key={item.id} xs={6}>
+        <Col key={item.id} xs={12} sm={8} md={6}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
-            <Card
-              title={item.category?.name}
-              size="small"
-              style={{ textAlign: "center" }}
-            >
-              <img key={item.id} alt="" src={item?.images[0]?.url} />
-              <p>{item.name}</p>
-              <p>{item.price.toLocaleString()} ₫</p>
-              <Button onClick={() => handleAddToCard(item)}>
-                Thêm vào giỏ hàng
-              </Button>
-            </Card>
+            <S.CardItem>
+              <Card
+                title={item.category?.name}
+                size="small"
+                style={{ textAlign: "center" }}
+              >
+                <S.CardImg>
+                  <img
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      objectFit: "cover",
+                    }}
+                    key={item.id}
+                    alt=""
+                    src={item?.images[0]?.url}
+                  />
+                </S.CardImg>
+                <S.CardItem>
+                  <p>{item.name}</p>
+                </S.CardItem>
+                <h4>{item.price.toLocaleString()} ₫</h4>
+                <Button onClick={() => handleAddToCard(item)}>
+                  Thêm vào giỏ hàng
+                </Button>
+              </Card>
+            </S.CardItem>
           </Link>
         </Col>
       );
@@ -131,7 +148,7 @@ function ProductListPage() {
   }, [productList.data]);
 
   const renderProductListFilter = useMemo(() => {
-    return productList.data.map((item) => {
+    return [...productList.data].slice(5, 12).map((item) => {
       return (
         <Link
           style={{ color: "black" }}
@@ -156,17 +173,25 @@ function ProductListPage() {
     });
   }, [productList.data]);
 
-  const handleShowMore = () => {
+  // const handleShowMore = () => {
+  //   dispatch(
+  //     getProductListAction({
+  //       ...filterParams,
+  //       page: productList.meta.page + 1,
+  //       limit: PRODUCT_LIMIT,
+  //       more: true,
+  //     })
+  //   );
+  // };
+  const handleChangePage = (page) => {
     dispatch(
       getProductListAction({
         ...filterParams,
-        page: productList.meta.page + 1,
+        page: page,
         limit: PRODUCT_LIMIT,
-        more: true,
       })
     );
   };
-
   return (
     <S.ProductListWrapper>
       <Row justify="space-between" style={{ margin: "16px auto" }}>
@@ -223,7 +248,7 @@ function ProductListPage() {
             >
               <Row>{renderCategoryFilter}</Row>
             </Checkbox.Group>
-            <h5 style={{ fontSize: "16px" }}>LỌC THEO GIÁ</h5>
+            {/* <h5 style={{ fontSize: "16px" }}>LỌC THEO GIÁ</h5>
             <Divider style={{ margin: "4px auto", borderColor: "#888080" }} />
             <Slider
               range
@@ -233,8 +258,8 @@ function ProductListPage() {
               defaultValue={filterParams.price}
               formatter={(value) => `${value.toLocaleString()} ₫`}
               onChange={(values) => handleFilter("price", values)}
-            />
-            <Space
+            /> */}
+            {/* <Space
               style={{ justifyContent: "space-between", marginBottom: "16px" }}
             >
               <Button onClick={(values) => handleFilter("price", values)}>
@@ -243,7 +268,7 @@ function ProductListPage() {
               <h5 color="black">
                 Giá: <span>{filterParams.price?.toLocaleString()} ₫</span>
               </h5>
-            </Space>
+            </Space> */}
             <h5 style={{ fontSize: "16px" }}>TÌM KIẾM SẢN PHẨM</h5>
             <Divider style={{ margin: "4px auto", borderColor: "#888080" }} />
             <Input
@@ -259,13 +284,13 @@ function ProductListPage() {
         <Col span={18}>
           <span>
             Bảng giá đồng hồ chính hãng 100% Thụy Sỹ như Rolex, Hublot, Franck
-            Muller, Omega, đồng hồ bằng vàng 18k….có sẵn tại Luxury Watch số 3
-            Điện Biên Phủ – Hoàn Kiếm – Hà Nội. Các mẫu đồng hồ nam, nữ chính
-            hãng đã qua sử dụng hoặc mới 100% có sẵn, giá tốt nhất Việt Nam.
-            TraLi Luxury Watch đảm bảo là nơi bán ra những chiếc đồng hồ nam, nữ
-            chính hãng số 1 tại Việt Nam. Những chiếc đồng hồ nam nữ không chỉ
-            được đảm bảo về chất lượng mà giá cả vô cùng hợp lý. Bảo hành dài
-            hạn, giao hàng COD (kiểm tra hàng thanh toán tiền khi nhận hàng).
+            Muller, Omega, đồng hồ bằng vàng 18k….có sẵn tại Luxury Watch Điện
+            Biên Phủ – Hoàn Kiếm – Hà Nội. Các mẫu đồng hồ nam, nữ chính hãng đã
+            qua sử dụng hoặc mới 100% có sẵn, giá tốt nhất Việt Nam. Luxury
+            Watch đảm bảo là nơi bán ra những chiếc đồng hồ nam, nữ chính hãng
+            số 1 tại Việt Nam. Những chiếc đồng hồ nam nữ không chỉ được đảm bảo
+            về chất lượng mà giá cả vô cùng hợp lý. Bảo hành dài hạn, giao hàng
+            COD (kiểm tra hàng thanh toán tiền khi nhận hàng).
           </span>
           <Spin spinning={productList.load}>
             <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
@@ -274,7 +299,14 @@ function ProductListPage() {
           </Spin>
           {productList.data.length !== productList.meta.total && (
             <Row justify="center" style={{ marginTop: 16 }}>
-              <Button onClick={() => handleShowMore()}>Show more</Button>
+              {/* <Button onClick={() => handleShowMore()}>Show more</Button> */}
+              <Pagination
+                current={productList.meta.page}
+                pageSize={PRODUCT_LIMIT}
+                total={productList.meta.total}
+                onChange={(page) => handleChangePage(page)}
+                style={{ margin: "16px auto" }}
+              />
             </Row>
           )}
         </Col>

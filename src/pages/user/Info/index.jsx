@@ -58,6 +58,7 @@ function InfoPage() {
   }, [infoForm, userInfo.data.id]);
 
   const dispatch = useDispatch();
+
   const totalPrice = cartList.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -132,7 +133,7 @@ function InfoPage() {
     },
   ];
 
-  if (!cartList.length) return <Navigate to={ROUTES.USER.CART_LIST} />;
+  // if (!cartList.length) return <Navigate to={ROUTES.USER.CART_LIST} />;
   return (
     <S.InfoWrapper>
       <Steps

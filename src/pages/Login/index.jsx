@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Space } from "antd";
 import { useNavigate, Navigate } from "react-router-dom";
 
 import { loginAction } from "../../redux/actions";
@@ -51,7 +51,7 @@ function LoginPage() {
   return (
     <S.LoginWrapper>
       <S.LoginContainer>
-        <h3>Login</h3>
+        <h3>Đăng nhập</h3>
         <Form
           form={loginForm}
           name="loginForm"
@@ -72,7 +72,7 @@ function LoginPage() {
             <Input />
           </Form.Item>
           <Form.Item
-            label="Password"
+            label="Mật khẩu"
             name="password"
             rules={[
               {
@@ -83,13 +83,21 @@ function LoginPage() {
           >
             <Input.Password />
           </Form.Item>
+
           <Button
             type="primary"
             htmlType="submit"
             block
             loading={loginData.load}
           >
-            Submit
+            Đăng nhập
+          </Button>
+          <Button
+            style={{ marginTop: "16px" }}
+            block
+            onClick={() => navigate(ROUTES.REGISTER)}
+          >
+            Đăng ký tài khoản
           </Button>
         </Form>
       </S.LoginContainer>

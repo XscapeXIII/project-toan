@@ -13,4 +13,5 @@ export const RegisterContainer = styled.div`
   width: 100%;
   max-width: 350px;
   background-color: white;
+  justify-content: center;
 `;

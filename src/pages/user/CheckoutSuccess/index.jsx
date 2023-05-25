@@ -28,7 +28,29 @@ function SuccessPage() {
           },
         ]}
       />
-      <h3>thanh toan thanh cong</h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src="https://images.fpt.shop/unsafe/filters:quality(5)/fptshop.com.vn/uploads/images/tin-tuc/148929/Originals/tich_xanh_titktok_2.png"
+          alt=""
+          width="300px"
+          height="auto"
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h3>Quý Khách Đã Đặt Hàng Thành công !</h3>
+      </div>
     </S.CheckoutSuccessWrapper>
   );
 }

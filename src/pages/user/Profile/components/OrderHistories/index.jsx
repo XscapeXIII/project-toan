@@ -65,9 +65,9 @@ const OrderHistories = () => {
                   <img alt="" src={item.img} width="60px" height="auto" />
                 )}
                 {item.name}
-                {` - ${item.price}`}
-                {` - ${item.quantity}`}
-                {` - ${item.price * item.quantity}`}
+                {` - ${item.price.toLocaleString()} ₫`}
+                {` - Số lượng: ${item.quantity}`}
+                {` - ${(item.price * item.quantity).toLocaleString()} ₫`}
               </li>
             ))}
           </ul>
