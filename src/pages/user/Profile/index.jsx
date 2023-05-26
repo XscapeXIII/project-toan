@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { Tabs, Card } from "antd";
 
 import OrderHistories from "./components/OrderHistories";
 import PersonalInfo from "./components/PersonalInfo";
 import FavoriteProducts from "./components/FavoriteProducts";
-import ChangePassword from "./components/ChangePassword";
+// import ChangePassword from "./components/ChangePassword";
 
 import * as S from "./styles";
 

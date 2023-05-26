@@ -11,8 +11,6 @@ import {
   Checkbox,
   Spin,
   notification,
-  Slider,
-  Space,
   Breadcrumb,
   Divider,
   Pagination,

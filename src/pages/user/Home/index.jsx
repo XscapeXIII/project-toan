@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Link, generatePath, useNavigate } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 
 import { Button, Card, Row, Col, Carousel, Divider, notification } from "antd";
 import * as S from "./styles";
@@ -23,7 +23,6 @@ function HomeWrapper() {
   const { categoryList } = useSelector((state) => state.category);
   const { genderList } = useSelector((state) => state.gender);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {

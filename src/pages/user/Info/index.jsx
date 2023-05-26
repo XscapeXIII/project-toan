@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   Steps,
@@ -28,7 +28,6 @@ import {
   getDistrictListAction,
   getWardListAction,
   orderProductAction,
-  getOrderList,
 } from "../../../redux/actions";
 import { ROUTES } from "constants/routes";
 
