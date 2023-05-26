@@ -6,6 +6,7 @@ import categoryReducer from "./redux/reducers/category.reducer";
 import genderReducer from "./redux/reducers/gender.reducer";
 import reviewReducer from "./redux/reducers/review.reducer";
 import cartReducer from "./redux/reducers/cart.reducer";
+import favoriteReducer from "./redux/reducers/favorite.reducer";
 import orderReducer from "./redux/reducers/order.reducer";
 import locationReducer from "./redux/reducers/location.reducer";
 import commonReducer from "./redux/reducers/common.reducer";
@@ -23,6 +24,7 @@ const store = configureStore({
     category: categoryReducer,
     gender: genderReducer,
     review: reviewReducer,
+    favorite: favoriteReducer,
     cart: cartReducer,
     order: orderReducer,
     location: locationReducer,

@@ -1,30 +1,44 @@
 import { useNavigate } from "react-router-dom";
-import { Tabs } from "antd";
+import { Tabs, Card } from "antd";
 
 import OrderHistories from "./components/OrderHistories";
 import PersonalInfo from "./components/PersonalInfo";
+import FavoriteProducts from "./components/FavoriteProducts";
+import ChangePassword from "./components/ChangePassword";
 
 import * as S from "./styles";
 
 function Profile() {
   return (
     <S.ProfileWrapper>
-      <Tabs
-        style={{ marginTop: "16px" }}
-        tabPosition="left"
-        items={[
-          {
-            label: "Thông tin cá nhân",
-            key: 1,
-            children: <PersonalInfo />,
-          },
-          {
-            label: "Lịch sử mua hàng",
-            key: 2,
-            children: <OrderHistories />,
-          },
-        ]}
-      />
+      <Card bordered={false} size="small">
+        <Tabs
+          style={{ marginTop: "16px" }}
+          tabPosition="left"
+          items={[
+            {
+              label: "Thông Tin Tài Khoản",
+              key: 1,
+              children: <PersonalInfo />,
+            },
+            {
+              label: "Lịch Sử Mua Hàng",
+              key: 2,
+              children: <OrderHistories />,
+            },
+            {
+              label: "Sản Phẩm Ưa Thích",
+              key: 3,
+              children: <FavoriteProducts />,
+            },
+            // {
+            //   label: "Đổi Mật Khẩu",
+            //   key: 4,
+            //   children: <ChangePassword />,
+            // },
+          ]}
+        />
+      </Card>
     </S.ProfileWrapper>
   );
 }

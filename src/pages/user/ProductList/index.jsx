@@ -28,12 +28,12 @@ import {
 } from "redux/actions";
 
 import { ROUTES } from "constants/routes";
-import { PRODUCT_LIMIT, PRODUCT_LIMIT_FILTER } from "constants/paging";
+import { PRODUCT_LIMIT } from "constants/paging";
 
 function ProductListPage() {
   const dispatch = useDispatch();
   const { state } = useLocation();
-  const { productList } = useSelector((state) => state.product);
+  const { productList, productDetail } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
 
   const [filterParams, setFilterParams] = useState({
@@ -99,7 +99,7 @@ function ProductListPage() {
         id: parseInt(product.id),
         name: product.name,
         price: product.price,
-        img: product.img,
+        img: productDetail.data.images[0].url,
         quantity: 1,
       })
     );

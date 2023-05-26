@@ -80,7 +80,7 @@ export const SimpleSlider = () => {
   const renderProductList = useMemo(() => {
     return productList.data.map((item) => {
       return (
-        <div key={item.id} xs={6}>
+        <div key={item.id}>
           <Link to={generatePath(ROUTES.USER.PRODUCT_DETAIL, { id: item.id })}>
             <Card
               title={item.category?.name}

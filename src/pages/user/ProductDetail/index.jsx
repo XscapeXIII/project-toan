@@ -46,7 +46,7 @@ function ProductDetailPage() {
   const [reviewForm] = Form.useForm();
 
   const dispatch = useDispatch();
-  const { productDetail, productList } = useSelector((state) => state.product);
+  const { productDetail } = useSelector((state) => state.product);
   const { userInfo } = useSelector((state) => state.auth);
   const { reviewList } = useSelector((state) => state.review);
 

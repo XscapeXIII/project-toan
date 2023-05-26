@@ -159,7 +159,7 @@ function InfoPage() {
         ]}
       />
       <Row gutter={[16, 16]}>
-        <Col span={14}>
+        <Col md={14} sm={24}>
           <div style={{ margin: "16px auto" }}>
             <h3>THÔNG TIN GIAO HÀNG</h3>
           </div>
@@ -293,7 +293,7 @@ function InfoPage() {
             </Form>
           </Card>
         </Col>
-        <Col span={10}>
+        <Col md={10} sm={24}>
           <div style={{ margin: "16px auto" }}>
             <h3>ĐƠN HÀNG</h3>
           </div>

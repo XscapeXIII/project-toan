@@ -19,7 +19,7 @@ import { PRODUCT_HOME } from "../../../constants/paging";
 function HomeWrapper() {
   const prevArrow = <Button type="primary">Previous</Button>;
   const nextArrow = <Button type="primary">Next</Button>;
-  const { productList } = useSelector((state) => state.product);
+  const { productList, productDetail } = useSelector((state) => state.product);
   const { categoryList } = useSelector((state) => state.category);
   const { genderList } = useSelector((state) => state.gender);
 
@@ -40,7 +40,7 @@ function HomeWrapper() {
         id: parseInt(product.id),
         name: product.name,
         price: product.price,
-        img: product.img,
+        img: productDetail.data.images[0]?.url,
         quantity: 1,
       })
     );
