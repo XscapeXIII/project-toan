@@ -132,9 +132,9 @@ function ProductListPage() {
                     src={item?.images[0]?.url}
                   />
                 </S.CardImg>
-                <S.CardItem>
+                <S.CardContent>
                   <p>{item.name}</p>
-                </S.CardItem>
+                </S.CardContent>
                 <h4>{item.price.toLocaleString()} ₫</h4>
                 <Button onClick={() => handleAddToCard(item)}>
                   Thêm vào giỏ hàng
