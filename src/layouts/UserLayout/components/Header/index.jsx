@@ -30,17 +30,23 @@ function AdminHeader() {
               height="auto"
             />
           </Link>
-          <Input placeholder="Search..." style={{ width: 250 }} />
+          <Input
+            size="large"
+            placeholder="Search..."
+            style={{ maxWidth: "40%", margin: "0 16px" }}
+          />
           <div>
-            <Space size={10} style={{ color: "white" }}>
+            <Space size={10} style={{ color: "white", minWidth: 120 }}>
               <Link to={ROUTES.USER.CART_LIST}>
                 <Badge count={cartList.length} size="small">
-                  <ShoppingCartOutlined
-                    style={{ color: "black", fontSize: 20 }}
-                  />
-                  <span color="black">
-                    Giỏ hàng/ {cartTotalPrice.toLocaleString()} ₫
-                  </span>
+                  <Space>
+                    <ShoppingCartOutlined
+                      style={{ color: "white", fontSize: 20 }}
+                    />
+                    <span style={{ color: "white" }}>
+                      Giỏ hàng/ {cartTotalPrice.toLocaleString()} ₫
+                    </span>
+                  </Space>
                 </Badge>
               </Link>
               <Divider

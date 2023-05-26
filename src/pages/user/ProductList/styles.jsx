@@ -8,6 +8,14 @@ export const ProductListWrapper = styled.div`
 
 export const CardItem = styled.div`
   position: relative;
+
+  & p {
+    height: 63px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 `;
 
 export const CardImg = styled.div`
