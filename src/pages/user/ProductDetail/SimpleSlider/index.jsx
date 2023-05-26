@@ -1,4 +1,5 @@
 import Slider from "react-slick";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,16 +10,21 @@ import { Card } from "antd";
 import { Link, generatePath } from "react-router-dom";
 import { ROUTES } from "constants/routes";
 
+import * as S from "./styles";
+
 export const SimpleSlider = () => {
   function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
+    const { style, onClick } = props;
     return (
-      <div
-        className={className}
+      <LeftOutlined
         style={{
           ...style,
           display: "block",
-          background: "grey",
+          position: "absolute",
+          top: "50%",
+          left: "-32px",
+          fontSize: "32px",
+          transform: "translateY(-50%)",
         }}
         onClick={onClick}
       />
@@ -26,11 +32,18 @@ export const SimpleSlider = () => {
   }
 
   function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
+    const { style, onClick } = props;
     return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "grey" }}
+      <RightOutlined
+        style={{
+          ...style,
+          display: "block",
+          position: "absolute",
+          top: "50%",
+          right: "-32px",
+          fontSize: "32px",
+          transform: "translateY(-50%)",
+        }}
         onClick={onClick}
       />
     );
@@ -87,9 +100,14 @@ export const SimpleSlider = () => {
               size="small"
               style={{ textAlign: "center" }}
             >
-              <img key={item.id} alt="" src={item?.images[0]?.url} />
-              <p>{item.name}</p>
-              <p>{item.price.toLocaleString()} ₫</p>
+              <img
+                key={item.id}
+                alt=""
+                src={item?.images[0]?.url}
+                style={{ height: 280, objectFit: "cover" }}
+              />
+              <S.ProductName>{item.name}</S.ProductName>
+              <p style={{ fontSize: 18 }}>{item.price.toLocaleString()} ₫</p>
             </Card>
           </Link>
         </div>

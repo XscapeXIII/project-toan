@@ -209,125 +209,133 @@ function ProductDetailPage() {
             },
           ]}
         />
-        <Row gutter={[16, 16]} style={{ marginTop: "16px" }}>
-          <Col span={10}>
-            <Carousel autoplay pauseOnHover pauseOnDotsHover draggable>
-              {renderProductImages}
-            </Carousel>
-          </Col>
-          <Col span={14}>
-            <div>
-              <h1>{productDetail.data.name}</h1>
-              <Space>
-                <Rate value={totalRate / reviewList.data.length} disabled />
-                {totalRate
-                  ? `(${(totalRate / reviewList.data.length).toFixed(1)})`
-                  : `(Chưa có đánh giá)`}
-              </Space>
-              {/* <p>{productDetail.data.category?.name}</p> */}
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: productDetail.data.miniContent,
-                }}
-              />
-              <h2>{productDetail.data.price?.toLocaleString()} ₫</h2>
-              <Space>
-                <InputNumber
-                  min={1}
-                  value={quantity}
-                  onChange={(value) => setQuantity(value)}
+        <Card bordered={false} style={{ marginTop: "16px" }}>
+          <Row gutter={[16, 16]}>
+            <Col span={10}>
+              <Carousel autoplay pauseOnHover pauseOnDotsHover draggable>
+                {renderProductImages}
+              </Carousel>
+            </Col>
+            <Col span={14}>
+              <div>
+                <h1>{productDetail.data.name}</h1>
+                <Space align="baseline" size={16} style={{ margin: "8px 0" }}>
+                  <Rate value={totalRate / reviewList.data.length} disabled />
+                  {totalRate
+                    ? `(${(totalRate / reviewList.data.length).toFixed(1)})`
+                    : `(Chưa có đánh giá)`}
+                </Space>
+                {/* <p>{productDetail.data.category?.name}</p> */}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: productDetail.data.miniContent,
+                  }}
                 />
-                <Button
-                  type="primary"
-                  icon={<ShoppingCartOutlined />}
-                  onClick={() => handleAddToCard()}
-                >
-                  THÊM VÀO GIỎ HÀNG
-                </Button>
-                <Button
-                  size="large"
-                  danger={isLike}
-                  icon={isLike ? <HeartFilled /> : <HeartOutlined />}
-                  onClick={() => handleToggleFavorite()}
-                >
-                  {productDetail.data?.favorites?.length || 0} Ưa Thích
-                </Button>
-              </Space>
-            </div>
-          </Col>
-        </Row>
-        <Row justify="center" style={{ display: "flex" }}>
-          <Col span={24}>
-            <Tabs
-              items={[
-                {
-                  label: "Chi tiết về sản phẩm",
-                  key: 1,
-                  children: (
-                    <span
-                      dangerouslySetInnerHTML={{
-                        __html: productDetail.data.content,
-                      }}
-                    />
-                  ),
-                },
-                {
-                  label: "Review sản phẩm",
-                  key: 2,
-                  children: (
-                    <div>
-                      {userInfo.data.id && (
-                        <Card title="Review" size="small">
-                          <Form
-                            form={reviewForm}
-                            name="reviewForm"
-                            layout="vertical"
-                            autoComplete="off"
-                            onFinish={(values) => handleReview(values)}
-                          >
-                            <Form.Item
-                              label="Rate"
-                              name="rate"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "Pls choose ur rate !",
-                                },
-                              ]}
+                <h2 style={{ margin: "8px 0" }}>
+                  {productDetail.data.price?.toLocaleString()} ₫
+                </h2>
+                <Space size={16}>
+                  <InputNumber
+                    size="large"
+                    min={1}
+                    value={quantity}
+                    onChange={(value) => setQuantity(value)}
+                  />
+                  <Button
+                    size="large"
+                    type="primary"
+                    icon={<ShoppingCartOutlined />}
+                    onClick={() => handleAddToCard()}
+                  >
+                    THÊM VÀO GIỎ HÀNG
+                  </Button>
+                  <Button
+                    size="large"
+                    danger={isLike}
+                    icon={isLike ? <HeartFilled /> : <HeartOutlined />}
+                    onClick={() => handleToggleFavorite()}
+                  >
+                    {productDetail.data?.favorites?.length || 0} Ưa Thích
+                  </Button>
+                </Space>
+              </div>
+            </Col>
+          </Row>
+        </Card>
+        <Card bordered={false} style={{ marginTop: "16px" }}>
+          <Row justify="center" style={{ display: "flex" }}>
+            <Col span={24}>
+              <Tabs
+                items={[
+                  {
+                    label: <h3>Chi tiết về sản phẩm</h3>,
+                    key: 1,
+                    children: (
+                      <S.ProductContent
+                        dangerouslySetInnerHTML={{
+                          __html: productDetail.data.content,
+                        }}
+                      />
+                    ),
+                  },
+                  {
+                    label: <h3>Review sản phẩm</h3>,
+                    key: 2,
+                    children: (
+                      <div>
+                        {userInfo.data.id && (
+                          <Card title="Review" size="small">
+                            <Form
+                              form={reviewForm}
+                              name="reviewForm"
+                              layout="vertical"
+                              autoComplete="off"
+                              onFinish={(values) => handleReview(values)}
                             >
-                              <Rate />
-                            </Form.Item>
-                            <Form.Item
-                              label="Comment"
-                              name="comment"
-                              rules={[
-                                {
-                                  required: true,
-                                  message: "No comment !",
-                                },
-                              ]}
-                            >
-                              <Input.TextArea
-                                autoSize={{
-                                  minRows: 2,
-                                  maxRows: 4,
-                                }}
-                              />
-                            </Form.Item>
-                            <Button type="primary" htmlType="submit" block>
-                              Gửi review sản phẩm
-                            </Button>
-                          </Form>
-                        </Card>
-                      )}
-                      {renderReviewList}
-                    </div>
-                  ),
-                },
-              ]}
-            ></Tabs>
-          </Col>
-        </Row>
+                              <Form.Item
+                                label="Rate"
+                                name="rate"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "Pls choose ur rate !",
+                                  },
+                                ]}
+                              >
+                                <Rate />
+                              </Form.Item>
+                              <Form.Item
+                                label="Comment"
+                                name="comment"
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: "No comment !",
+                                  },
+                                ]}
+                              >
+                                <Input.TextArea
+                                  autoSize={{
+                                    minRows: 2,
+                                    maxRows: 4,
+                                  }}
+                                />
+                              </Form.Item>
+                              <Button type="primary" htmlType="submit" block>
+                                Gửi review sản phẩm
+                              </Button>
+                            </Form>
+                          </Card>
+                        )}
+                        {renderReviewList}
+                      </div>
+                    ),
+                  },
+                ]}
+              ></Tabs>
+            </Col>
+          </Row>
+        </Card>
         <Divider style={{ borderColor: "#5b5b5b" }}>
           <h3>SẢN PHẨM TƯƠNG TỰ</h3>
         </Divider>

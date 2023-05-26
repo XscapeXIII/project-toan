@@ -10,13 +10,14 @@ import * as S from "./styles";
 function Profile() {
   return (
     <S.ProfileWrapper>
-      <Card bordered={false} size="small">
+      <Card bordered={false} size="small" style={{ marginTop: 24 }}>
         <Tabs
           style={{ marginTop: "16px" }}
           tabPosition="left"
           items={[
             {
               label: "Thông Tin Tài Khoản",
+
               key: 1,
               children: <PersonalInfo />,
             },
