@@ -48,7 +48,7 @@ const PersonalInfo = () => {
       <Form.Item label="Xác Nhận Mật Khẩu Mới:" name="confirmPassword">
         <Input />
       </Form.Item>
-      <Button>Thay đổi Thông Tin Cá Nhân</Button>
+      <Button type="primary">Thay đổi Thông Tin Cá Nhân</Button>
     </Form>
   );
 };
